@@ -1,0 +1,63 @@
+.OpcionesDeSwitches {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.OpcionesDeSwitches--Opcion {
+  width: fit-content;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+}
+.OpcionesDeSwitches--Opcion.Centro {
+  align-items: center;
+}
+.OpcionesDeSwitches--Opcion--Titulo {
+  font-size: 14px;
+  color: var(--ColorPrincipal);
+  font-weight: bold;
+}
+.OpcionesDeSwitches--Opcion--Switch {
+  width: 40px;
+  height: 25px;
+  border-radius: 15px;
+  background-color: var(--ColorVerde);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.OpcionesDeSwitches--Opcion--Switch.Desactivado {
+  background-color: var(--ColorRojoOscuro);
+}
+.OpcionesDeSwitches--Opcion--Switch button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+  transform: translateX(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.OpcionesDeSwitches--Opcion--Switch button ion-icon {
+  font-size: 10px;
+  color: var(--ColorVerde);
+}
+.OpcionesDeSwitches--Opcion--Switch.Desactivado button {
+  transform: translateX(-8px);
+  background: white;
+}
+.OpcionesDeSwitches--Opcion--Switch.Desactivado button ion-icon {
+  color: var(--ColorRojoOscuro);
+}

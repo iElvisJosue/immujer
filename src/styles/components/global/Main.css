@@ -1,0 +1,262 @@
+.Main {
+  position: relative;
+  min-height: 100dvh;
+  padding: 10px;
+  /* overflow: hidden; */
+
+  display: grid;
+  grid-template-areas:
+    "Menu Titulo"
+    "Menu Header"
+    "Menu Contenido";
+  grid-template-rows: minmax(150px, auto) 1fr;
+  grid-template-columns: auto calc(100% - 110px);
+  gap: 10px;
+}
+.Main__Menu {
+  position: sticky;
+  top: 10px;
+  grid-area: Menu;
+  grid-row: 1 / -1;
+  width: 100px;
+  max-height: calc(100vh - 20px);
+  border-radius: var(--RadiusInputs);
+  padding: 10px;
+  background: var(--ColorBlanco);
+  transition: 0.3s ease all;
+  overflow: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.Main__Menu::-webkit-scrollbar {
+  display: none;
+}
+.Main__Menu--Imagenes {
+  min-width: 50px;
+  width: 50px;
+  max-width: 50px;
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Main__Menu--Imagenes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.Main__Menu--Opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Main__Menu--Opciones--Boton {
+  position: relative;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s ease all;
+  border-radius: 50%;
+  border: 2px solid var(--ColorBg);
+  background-color: var(--ColorBg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Main__Menu--Opciones--Boton.Activo,
+.Main__Menu--Opciones--Boton.Activo:hover {
+  border: 2px solid var(--ColorPrincipal);
+  background-color: var(--ColorPrincipal);
+}
+.Main__Menu--Opciones--Boton.Activo svg {
+  fill: var(--ColorBlanco);
+}
+.Main__Menu--Opciones--Boton:hover {
+  border: 2px solid var(--ColorGrisClaro);
+  background-color: var(--ColorGrisClaro);
+}
+.Main__Menu--Opciones--Boton::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--ColorGrisOscuro);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+.Main__Menu--Opciones--Boton.Activo:hover::after {
+  opacity: 0;
+  visibility: hidden;
+}
+.Main__Menu--Opciones--Boton:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ESTILOS PARA EL BOTON DE CERRAR SESION */
+.Main__Menu--Opciones--Boton.CerrarSesion:hover {
+  border: 2px solid var(--ColorRojoOscuro);
+  background-color: var(--ColorRojoOscuro);
+}
+.Main__Menu--Opciones--Boton.CerrarSesion:hover::after {
+  background-color: var(--ColorRojoOscuro);
+}
+.Main__Menu--Opciones--Boton.CerrarSesion:hover svg {
+  fill: var(--ColorBlanco);
+}
+/* TERMINAN ESTILOS PARA EL BOTON DE CERRAR SESION */
+
+.Main__Menu--Configuracion {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Main__Header {
+  grid-area: Header;
+  grid-row: span 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Main__Header svg {
+  cursor: pointer;
+  display: none;
+}
+.Main__Header--Titulo {
+  text-align: center;
+  color: var(--ColorPrincipal);
+  font-size: clamp(40px, 6vw, 50px);
+  text-align: start;
+  font-weight: bold;
+}
+.Main__Header--Navegacion {
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Scroll solo horizontal */
+  white-space: nowrap; /* Mantiene los elementos en línea */
+  flex-wrap: nowrap; /* Evita saltos de línea */
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.Main__Header--Navegacion::-webkit-scrollbar {
+  display: none;
+}
+.Main__Header--Navegacion--Opcion {
+  cursor: pointer;
+  padding: 2px;
+  transition: 0.3s ease all;
+  border-radius: 30px;
+  background-color: var(--ColorBlanco);
+  border: 2px solid var(--ColorBlanco);
+  color: var(--ColorGrisOscuro);
+
+  display: flex;
+  align-items: center;
+}
+.Main__Header--Navegacion--Opcion.Activa,
+.Main__Header--Navegacion--Opcion.Activa:hover {
+  background-color: var(--ColorPrincipal);
+  border: 2px solid var(--ColorPrincipal);
+  color: var(--ColorBlanco);
+}
+.Main__Header--Navegacion--Opcion:hover {
+  background-color: var(--ColorGrisClaro);
+  border: 2px solid var(--ColorGrisClaro);
+}
+.Main__Header--Navegacion--Opcion--Icono {
+  min-width: 50px;
+  width: 50px;
+  max-width: 50px;
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: var(--ColorBlanco);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Main__Header--Navegacion--Opcion--Icono img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+.Main__Header--Navegacion--Opcion--Texto {
+  font-size: 14px;
+  padding: 0 10px;
+  text-align: center;
+}
+.Main__Contenido {
+  grid-area: Contenido;
+  grid-row: span 1;
+
+  /* height: calc(100dvh - 260px); */
+}
+@media (width > 1920px) {
+  .Main {
+    width: 1920px;
+    margin: 0 auto;
+  }
+}
+@media (width <= 768px) {
+  .Main {
+    grid-template-areas:
+      "Titulo"
+      "Header"
+      "Contenido";
+    grid-template-columns: 100%;
+  }
+  .Main__Header svg {
+    display: block;
+  }
+  .Main__Menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    left: -100%;
+    z-index: 1000;
+  }
+  .Main__Menu--Imagenes,
+  .Main__Menu--Opciones--Boton,
+  .Main__Menu--Configuracion--FotoPerfil {
+    min-width: 40px;
+    width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+  }
+  .Main__Menu.Ver {
+    left: 10px;
+  }
+}

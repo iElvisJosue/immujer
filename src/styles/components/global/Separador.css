@@ -1,0 +1,11 @@
+.Separador {
+  grid-column: 1 / -1;
+}
+.Separador__Linea {
+  width: 50px;
+  height: 5px;
+  border: none;
+  border-radius: 20px;
+  margin: 15px auto 0px;
+  background-color: var(--ColorPrincipal);
+}

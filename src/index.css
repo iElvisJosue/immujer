@@ -1,0 +1,66 @@
+/* IMPORTAMOS LOS ESTILOS GLOBALES */
+@import url(./styles/global/Botones.css);
+@import url(./styles/global/SVG.css);
+@import url(./styles/global/CampoRequerido.css);
+@import url(./styles/global/Inputs.css);
+@import url(./styles/global/SweetAlert.css);
+/* IMPORTAMOS LA FUENTE */
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/Fuentes/poppins.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* CONFIGURACIÓN GENERAL */
+:root {
+  --ColorNegro: #171616;
+  --ColorBlanco: #ffffff;
+  --ColorPrincipal: #8b5cf6;
+  --ColorSecundario: #bfaaef;
+  --ColorBg: #f7f4fd;
+  --ColorVerde: #2b882b;
+  --ColorRojoOscuro: #d1465c;
+  --ColorNaranja: #f39d09;
+  --ColorAzul: #3b82f6;
+  --ColorGrisClaro: #cccccc;
+  --ColorGrisOscuro: #888888;
+  --RadiusContenedor: 25px;
+  --RadiusInputs: 15px;
+  --RadiusPequeno: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+}
+input {
+  /* accent-color: var(--MainYellow); */
+  outline: none;
+}
+input[type="file"] {
+  display: none;
+}
+li {
+  list-style: none;
+}
+body {
+  /* background-color: var(--ColorBg); */
+  background: linear-gradient(60deg, var(--ColorBg), var(--ColorSecundario));
+}
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scroll */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--ColorPrincipal); /* Color del scroll thumb */
+}
+::-webkit-scrollbar-track {
+  background-color: var(--ColorBg); /* Color del track */
+}

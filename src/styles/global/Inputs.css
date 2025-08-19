@@ -1,0 +1,80 @@
+.ContenedorInput {
+  grid-column: span 1;
+}
+.ContenedorInput.Dos {
+  grid-column: span 2;
+}
+.ContenedorInput.Tres {
+  grid-column: span 3;
+}
+.ContenedorInput.Cuatro {
+  grid-column: span 4;
+}
+.ContenedorInput.Completo {
+  grid-column: 1 / -1;
+}
+
+.ContenedorInput__MaterialDesign {
+  position: relative;
+  width: 100%;
+}
+.ContenedorInput__MaterialDesign--Icono {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ContenedorInput__MaterialDesign--Icono.Ojo {
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.ContenedorInput__MaterialDesign--InputText {
+  width: 100%;
+  height: 60px;
+  padding: 10px 50px;
+  border: 2px solid var(--ColorBlanco);
+  border-radius: var(--RadiusInputs);
+  background-color: var(--ColorBlanco);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.ContenedorInput__MaterialDesign--Label {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  font-size: 16px;
+  color: var(--ColorGrisOscuro);
+  pointer-events: none;
+  transition: 0.3s ease all;
+  background-color: white;
+  padding: 0 5px;
+}
+
+.ContenedorInput__MaterialDesign--InputText:focus,
+.ContenedorInput__MaterialDesign--InputText:not(:placeholder-shown) {
+  border-color: var(--ColorPrincipal);
+  color: var(--ColorPrincipal);
+  font-weight: bold;
+}
+.ContenedorInput__MaterialDesign--InputText.SinBorde:focus,
+.ContenedorInput__MaterialDesign--InputText.SinBorde:not(:placeholder-shown) {
+  border-color: transparent;
+}
+.ContenedorInput__MaterialDesign--InputText:focus
+  + .ContenedorInput__MaterialDesign--Label,
+.ContenedorInput__MaterialDesign--InputText:not(:placeholder-shown)
+  + .ContenedorInput__MaterialDesign--Label {
+  top: 0;
+  left: 10px;
+  font-size: 12px;
+  background-color: var(--ColorPrincipal);
+  border: 2px solid var(--ColorPrincipal);
+  color: var(--ColorBlanco);
+}

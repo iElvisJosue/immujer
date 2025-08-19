@@ -1,0 +1,47 @@
+.IniciarSesion {
+  position: relative;
+  min-height: 100dvh;
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.IniciarSesion__Formulario {
+  position: relative;
+  padding: 20px;
+  width: 500px;
+  border-radius: var(--RadiusContenedor);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.IniciarSesion__Formulario--Imagen {
+  width: 150px;
+  height: 150px;
+}
+.IniciarSesion__Formulario--Titulo {
+  text-align: center;
+  color: var(--ColorPrincipal);
+  font-size: 25px;
+}
+@media (width >= 1920px) {
+  .IniciarSesion {
+    width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+@media (width <= 768px) {
+  .IniciarSesion {
+    padding: 0;
+  }
+  .IniciarSesion__Formulario {
+    border-radius: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
+}

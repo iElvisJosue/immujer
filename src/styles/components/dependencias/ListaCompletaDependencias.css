@@ -1,0 +1,15 @@
+.ListaCompletaDependencias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}
+@media (max-width: 900px) {
+  .ListaCompletaDependencias {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+@media (max-width: 550px) {
+  .ListaCompletaDependencias {
+    grid-template-columns: 1fr;
+  }
+}

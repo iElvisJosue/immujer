@@ -1,0 +1,37 @@
+.FooterBotones {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.FooterBotones__BotonNegativo,
+.FooterBotones__BotonPositivo {
+  width: 150px;
+  height: 60px;
+  border: none;
+  border-radius: var(--RadiusInputs);
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease all;
+}
+.FooterBotones__BotonNegativo {
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: var(--ColorRojoOscuro);
+}
+.FooterBotones__BotonNegativo:hover {
+  border: 2px solid var(--ColorRojoOscuro);
+}
+.FooterBotones__BotonPositivo {
+  border: 2px solid var(--ColorVerde);
+  background-color: var(--ColorVerde);
+  color: var(--ColorBlanco);
+}
+@media (width <= 500px) {
+  .FooterBotones__BotonNegativo,
+  .FooterBotones__BotonPositivo {
+    width: 100%;
+  }
+}

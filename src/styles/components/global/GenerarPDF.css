@@ -1,0 +1,36 @@
+.GenerarPDF {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.GenerarPDF__Boton {
+  padding: 5px;
+  width: fit-content;
+  border-radius: 10px;
+  border: 2px solid var(--ColorPrincipal);
+  background-color: var(--ColorPrincipal);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 14px);
+  transition: 0.3s ease all;
+}
+.GenerarPDF__Boton:hover {
+  background-color: transparent;
+  color: var(--ColorPrincipal);
+}
+.GenerarPDF__Texto {
+  padding: 10px 20px;
+  width: fit-content;
+  color: var(--ColorPrincipal);
+  font-weight: bold;
+  pointer-events: none;
+}
+@media (width <= 300px) {
+  .GenerarPDF__Boton {
+    min-width: 100%;
+  }
+}

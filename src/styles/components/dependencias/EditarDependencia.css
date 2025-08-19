@@ -1,0 +1,67 @@
+.EditarDependencia {
+  width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); */
+  gap: 10px;
+}
+.EditarDependencia__Regresar {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.EditarDependencia__Regresar--Boton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+  border: none;
+  outline: none;
+}
+.EditarDependencia__SeleccionarImagen {
+  grid-column: 1 / -1;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.EditarDependencia__SeleccionarImagen__Label {
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  border: 2px dashed var(--ColorPrincipal);
+  border-radius: 20px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.EditarDependencia__SeleccionarImagen__Label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 15px;
+}
+@media (width <= 1150px) {
+  .EditarDependencia {
+    width: 100%;
+  }
+}
+@media (width <= 600px) {
+  .EditarDependencia {
+    grid-template-columns: 1fr;
+  }
+  .EditarDependencia__SeleccionarImagen__Label {
+    width: 100%;
+  }
+}

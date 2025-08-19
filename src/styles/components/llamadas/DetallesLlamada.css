@@ -1,0 +1,144 @@
+.DetallesLlamada__Contenido {
+  grid-column: 1 / -1;
+  border-radius: var(--RadiusInputs);
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.DetallesLlamada__Contenido--Header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.DetallesLlamada__Contenido--Header--Boton {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--RadiusInputs);
+  transition: 0.3s ease all;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.DetallesLlamada__Contenido--Header--Boton.Regresar {
+  background-color: var(--ColorRojoOscuro);
+  border: 2px solid var(--ColorRojoOscuro);
+}
+.DetallesLlamada__Contenido--Header--Boton.Imprimir {
+  background-color: var(--ColorPrincipal);
+  border: 2px solid var(--ColorPrincipal);
+}
+.DetallesLlamada__Contenido--Header--Boton:hover {
+  transform: scale(1.1);
+  background-color: transparent;
+}
+.DetallesLlamada__Contenido--Header--Boton.Regresar:hover svg {
+  fill: var(--ColorRojoOscuro);
+}
+.DetallesLlamada__Contenido--Header--Boton.Imprimir:hover svg {
+  fill: var(--ColorPrincipal);
+}
+.DetallesLlamada__Contenido--Header--Acciones {
+  display: flex;
+  gap: 5px;
+}
+.DetallesLlamada__Contenido--Card {
+  background-color: var(--ColorBlanco);
+  border-radius: var(--RadiusInputs);
+  padding: 10px;
+  transition: 0.3s ease all;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.DetallesLlamada__Contenido--Card.Nombre:hover,
+.DetallesLlamada__Contenido--Card.Telefono:hover,
+.DetallesLlamada__Contenido--Card.Correo:hover {
+  cursor: pointer;
+  background-color: var(--ColorPrincipal);
+}
+.DetallesLlamada__Contenido--Card.Header {
+  grid-column: 1 / -1;
+  border-radius: 13px;
+  background-color: transparent;
+  color: var(--ColorPrincipal);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: clamp(20px, 3vw, 25px);
+}
+.DetallesLlamada__Contenido--Card.Dos {
+  grid-column: span 2;
+}
+.DetallesLlamada__Contenido--Card.Tres {
+  grid-column: span 3;
+}
+.DetallesLlamada__Contenido--Card.Completo {
+  grid-column: 1 / -1;
+}
+.DetallesLlamada__Contenido--Card--Icono {
+  max-width: 35px;
+  max-height: 35px;
+}
+.DetallesLlamada__Contenido--Card.Nombre:hover
+  .DetallesLlamada__Contenido--Card--Titulo,
+.DetallesLlamada__Contenido--Card.Telefono:hover
+  .DetallesLlamada__Contenido--Card--Titulo,
+.DetallesLlamada__Contenido--Card.Correo:hover
+  .DetallesLlamada__Contenido--Card--Titulo {
+  color: var(--ColorBlanco);
+}
+.DetallesLlamada__Contenido--Card--Titulo {
+  color: var(--ColorPrincipal);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: clamp(12px, 6vw, 16px);
+  text-align: center;
+  transition: 0.3s ease all;
+}
+.DetallesLlamada__Contenido--Card--Titulo.Grande {
+  font-size: clamp(14px, 6vw, 20px);
+}
+.DetallesLlamada__Contenido--Card--Texto {
+  text-align: center;
+  color: var(--ColorGrisOscuro);
+  transition: 0.3s ease all;
+}
+.DetallesLlamada__Contenido--Card.Nombre:hover
+  .DetallesLlamada__Contenido--Card--Texto,
+.DetallesLlamada__Contenido--Card.Telefono:hover
+  .DetallesLlamada__Contenido--Card--Texto,
+.DetallesLlamada__Contenido--Card.Correo:hover
+  .DetallesLlamada__Contenido--Card--Texto {
+  color: var(--ColorBlanco);
+}
+.DetallesLlamada__Contenido--Card--Evidencia {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.AlertaInformacionAgente__Texto {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .DetallesLlamada__Contenido {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .DetallesLlamada__Contenido--Card.Nombre {
+    grid-row: 5 / 5;
+  }
+  .DetallesLlamada__Contenido--Card.Dos,
+  .DetallesLlamada__Contenido--Card.Tres {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 375px) {
+  .DetallesLlamada__Contenido {
+    grid-template-columns: 1fr;
+  }
+}

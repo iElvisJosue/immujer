@@ -1,0 +1,18 @@
+export const MENSAJES_DE_VALIDACION = {
+  REQUERIDO: "¡Este campo es obligatorio! ⚠️",
+  MIN2: "¡Este campo no puede tener menos de 2 caracteres! 🔠",
+  MAX2: "¡Este campo no puede tener más de 2 caracteres! 🔠",
+  MIN4: "¡Este campo no puede tener menos de 4 caracteres! 🔠",
+  MAX4: "¡Este campo no puede tener más de 4 caracteres! 🔠",
+  MIN5: "¡Este campo no puede tener menos de 5 caracteres! 🔠",
+  MAX5: "¡Este campo no puede tener más de 5 caracteres! 🔠",
+  MIN10: "¡Este campo no puede tener menos de 10 caracteres! 🔠",
+  MAX10: "¡Este campo no puede tener más de 10 caracteres! 🔠",
+  MAX15: "¡Este campo no puede tener más de 15 caracteres! 🔠",
+  MAX20: "¡Este campo no puede tener más de 20 caracteres! 🔠",
+  MAX50: "¡Este campo no puede tener más de 50 caracteres! 🔠",
+  MAX100: "¡Este campo no puede tener más de 100 caracteres! 🔠",
+  MAX150: "¡Este campo no puede tener más de 150 caracteres! 🔠",
+  MAX255: "¡Este campo no puede tener más de 255 caracteres! 🔠",
+  MAX1000: "¡Este campo no puede tener más de 1000 caracteres! 🔠",
+};

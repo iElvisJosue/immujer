@@ -1,0 +1,16 @@
+.SVG {
+  transition: 0.3s ease-in-out all;
+  fill: var(--ColorGrisOscuro);
+}
+.SVG.Principal {
+  fill: var(--ColorPrincipal);
+}
+.SVG.Negro {
+  fill: var(--ColorNegro);
+}
+.SVG.Blanco {
+  fill: var(--ColorBlanco);
+}
+.SVG.Rojo {
+  fill: var(--ColorRojoOscuro);
+}

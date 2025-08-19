@@ -1,0 +1,98 @@
+.InformacionRegistro {
+  background-color: var(--ColorBlanco);
+  border-radius: var(--RadiusInputs);
+  padding: 10px;
+  transition: 0.3s ease all;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.InformacionRegistro:hover {
+  cursor: pointer;
+  background-color: var(--ColorPrincipal);
+  color: var(--ColorBlanco);
+  transform: scale(1.01);
+}
+.InformacionRegistro:hover .InformacionRegistro__Detalles {
+  color: var(--ColorBlanco);
+}
+.InformacionRegistro.Rojo {
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+}
+.InformacionRegistro.Rojo .InformacionRegistro__Detalles {
+  color: var(--ColorBlanco);
+}
+.InformacionRegistro.Rojo:hover {
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+}
+.InformacionRegistro__Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+}
+.InformacionRegistro__Header--ImagenTitulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.InformacionRegistro__Header--ImagenTitulo--Imagen {
+  min-width: 50px;
+  width: 50px;
+  min-height: 50px;
+  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  background-color: var(--ColorBlanco);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.InformacionRegistro__Header--ImagenTitulo--Imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.InformacionRegistro__Header--ImagenTitulo p {
+  font-size: clamp(12px, 4vw, 14px);
+}
+.InformacionRegistro__Header--ID {
+  padding: 4px 8px;
+  background-color: var(--ColorBg);
+  border-radius: var(--RadiusContenedor);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.InformacionRegistro__Header--ID img {
+  width: 20px;
+  height: 20px;
+}
+.InformacionRegistro__Header--ID p {
+  font-size: clamp(10px, 4vw, 14px);
+  color: var(--ColorGrisOscuro);
+  margin-top: 2px;
+}
+.InformacionRegistro__Descripcion {
+  margin-top: 10px;
+  font-size: clamp(14px, 4vw, 20px);
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2; /* Número de líneas permitidas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.InformacionRegistro__Detalles {
+  font-size: clamp(10px, 3vw, 14px);
+  color: var(--ColorVerde);
+  transition: 0.3s ease all;
+}

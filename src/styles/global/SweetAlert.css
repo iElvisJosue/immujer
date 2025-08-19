@@ -1,0 +1,62 @@
+.AlertaDePregunta {
+  border-radius: 0;
+  padding: 10px;
+}
+.TituloDeAlerta {
+  font-weight: bold;
+  padding: 0px;
+  font-size: 30px;
+}
+.TituloDeAlerta.Azul {
+  color: var(--ColorPrincipal);
+}
+.TituloDeAlerta.Verde {
+  color: var(--ColorVerde);
+}
+.TituloDeAlerta.Naranja {
+  color: var(--ColorNaranja);
+}
+.TituloDeAlerta.Rojo {
+  color: var(--ColorRojoOscuro);
+}
+.ContenidoDeAlerta {
+  color: var(--ColorGrisOscuro);
+  padding: 0px;
+  font-size: 20px;
+}
+.BotonDeConfirmacion {
+  transition: 0.3s ease all;
+  color: var(--ColorBlanco);
+  border-radius: 0;
+  margin: 0px;
+  font-size: 16px;
+}
+.BotonDeConfirmacion:focus,
+.BotonDeCancelar:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.BotonDeCancelar {
+  transition: 0.3s ease all;
+  background-color: transparent;
+  color: var(--ColorRojoOscuro);
+  border-radius: 0;
+  font-size: 16px;
+}
+.BotonDeCancelar:hover {
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+}
+.BotonDeConfirmacion.Azul {
+  background-color: var(--ColorPrincipal);
+}
+.BotonDeConfirmacion.Verde {
+  background-color: var(--ColorVerde);
+}
+.BotonDeConfirmacion.Naranja {
+  background-color: var(--ColorNaranja);
+}
+.BotonDeConfirmacion.Rojo {
+  background-color: var(--ColorRojoOscuro);
+}

@@ -1,0 +1,18 @@
+.RegistrarUsuario {
+  width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); */
+  gap: 20px;
+}
+@media (width <= 1150px) {
+  .RegistrarUsuario {
+    width: 100%;
+  }
+}
+@media (width <= 600px) {
+  .RegistrarUsuario {
+    grid-template-columns: 1fr;
+  }
+}

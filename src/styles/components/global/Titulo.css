@@ -1,0 +1,8 @@
+.Titulo {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorPrincipal);
+  font-size: clamp(28px, 6vw, 35px);
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,0 +1,41 @@
+.Boton {
+  width: 200px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out all;
+  border-radius: var(--RadiusInputs);
+  background-color: var(--ColorPrincipal);
+  color: var(--ColorBlanco);
+  border: 2px solid var(--ColorPrincipal);
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.Boton.Completo {
+  width: 100%;
+}
+.Boton:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--ColorPrincipal);
+  letter-spacing: 0.5px;
+}
+.Boton:hover svg {
+  fill: var(--ColorPrincipal);
+}
+.Boton.Rojo {
+  background-color: transparent;
+  border: none;
+  color: var(--ColorRojoOscuro);
+}
+.Boton.Rojo:hover {
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.Boton.Rojo:hover svg {
+  fill: var(--ColorRojoOscuro);
+}

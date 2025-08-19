@@ -1,0 +1,37 @@
+.EditarUsuario {
+  width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); */
+  gap: 20px;
+}
+.EditarUsuario__Regresar {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.EditarUsuario__Regresar--Boton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+  border: none;
+  outline: none;
+}
+
+@media (width <= 1150px) {
+  .EditarUsuario {
+    width: 100%;
+  }
+}
+@media (width <= 600px) {
+  .EditarUsuario {
+    grid-template-columns: 1fr;
+  }
+}
