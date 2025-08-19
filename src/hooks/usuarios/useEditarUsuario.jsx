@@ -5,9 +5,11 @@ import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
 import { useUsuarios } from "../../context/UsuariosContext";
 // AYUDAS A USAR
+import { COOKIE_CON_TOKEN } from "../../helpers/AgregarCookiePeticion";
 import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
 export default function useEditarUsuario({
   infUsuario,
+  imagenSeleccionada,
   establecerSubvistaActual,
 }) {
   // PETICION A REALIZAR
@@ -57,9 +59,27 @@ export default function useEditarUsuario({
   };
   const PeticionEditarUsuario = handleSubmit(async (data) => {
     try {
-      data.idUsuario = infUsuario.id_usuario;
-      data.Activo = usuarioActivo;
-      const res = await EditarUnUsuario(data);
+      // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
+      const formData = new FormData();
+      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
+      formData.append("idUsuario", infUsuario.id_usuario);
+      formData.append("Nombre", data.Nombre);
+      formData.append("ApellidoPaterno", data.ApellidoPaterno);
+      formData.append("ApellidoMaterno", data.ApellidoMaterno);
+      formData.append("Contrasena", data.Contrasena);
+      formData.append("Correo", data.Correo);
+      formData.append("SistemaApp", data.SistemaApp);
+      formData.append("Edad", data.Edad);
+      formData.append("Telefono", data.Telefono);
+      formData.append("CodigoPostal", data.CodigoPostal);
+      formData.append("Colonia", data.Colonia);
+      formData.append("ContactoEmergencia", data.ContactoEmergencia);
+      formData.append("TelefonoContacto", data.TelefonoContacto);
+      // ESTO SOLO SE USA EN CASO DE QUE NO SE HAYA MODIFICADO LA FOTO
+      formData.append("Foto", infUsuario.foto);
+      formData.append("ActivoUsuario", usuarioActivo ? "Si" : "No");
+      formData.append("Imagen", imagenSeleccionada);
+      const res = await EditarUnUsuario(formData);
       if (res.response) {
         const { status, data } = res.response;
         ManejarRespuestasDelServidor({ status, data });

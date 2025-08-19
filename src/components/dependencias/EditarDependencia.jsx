@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // HOOKS A USAR
-import { useEditarDependencia } from "../../hooks/dependencias/useEditarDependencia";
+import useEditarDependencia from "../../hooks/dependencias/useEditarDependencia";
+import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
 import Titulo from "../global/Titulo";
 import Separador from "../global/Separador";
@@ -11,6 +12,7 @@ import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 import { LISTA_SVGS } from "../../helpers/SVGs";
 import { MENSAJES_DE_VALIDACION } from "../../helpers/MensajesValidaciones";
 import { REGEX_SOLO_NUMEROS } from "../../helpers/Regex";
+import { HOST_IMAGENES } from "../../helpers/Urls";
 // ESTILOS A USAR
 import "../../styles/components/dependencias/EditarDependencia.css";
 
@@ -19,19 +21,25 @@ export default function EditarDependencia({
   infDependenciaSeleccionada,
 }) {
   const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    imagenSeleccionada,
+    ImagenPreview,
+  } = useArrastrarImagen({
+    urlImagenActual: `${HOST_IMAGENES}/Dependencias/${infDependenciaSeleccionada.foto}`,
+  });
+  const {
     register,
     CampoRequerido,
     ubicacion,
     establecerUbicacion,
     dependenciaActiva,
     establecerDependenciaActiva,
-    getRootProps,
-    getInputProps,
-    isDragActive,
     PeticionActualizarDependencia,
-    ImagenDependencia,
   } = useEditarDependencia({
     infDependencia: infDependenciaSeleccionada,
+    imagenSeleccionada,
     establecerSubvistaActual,
   });
 
@@ -62,7 +70,7 @@ export default function EditarDependencia({
           {isDragActive ? (
             <img src="Imagenes/Arrastrar_Imagen.png" alt="Agregar Imagen" />
           ) : (
-            <img src={ImagenDependencia} alt="Foto dependencia" />
+            <img src={ImagenPreview} alt="Foto dependencia" />
           )}
         </picture>
       </div>

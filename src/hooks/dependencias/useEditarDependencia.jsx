@@ -1,6 +1,5 @@
 // LIBRERÍAS A USAR
-import { useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
@@ -11,12 +10,12 @@ import {
 } from "../../helpers/TiposDeAlertas";
 // AYUDAS A USAR
 import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
-import { HOST_IMAGENES } from "../../helpers/Urls";
 import { COOKIE_CON_TOKEN } from "../../helpers/AgregarCookiePeticion";
-export const useEditarDependencia = ({
+export default function useEditarDependencia({
   infDependencia,
+  imagenSeleccionada,
   establecerSubvistaActual,
-}) => {
+}) {
   // FUNCION DE LA PETICION DE EDITAR UNA DEPENDENCIA
   const { EditarUnaDependencia } = useDependencias();
   // ESTADOS A USAR
@@ -27,7 +26,6 @@ export const useEditarDependencia = ({
   const [dependenciaActiva, establecerDependenciaActiva] = useState(
     infDependencia.activo
   );
-  const [imagenSeleccionada, establecerImagenSeleccionada] = useState(null);
   // PARA MANEJAR EL FORMULARIO Y SUS ERRORES
   const {
     handleSubmit,
@@ -60,38 +58,6 @@ export const useEditarDependencia = ({
       />
     );
   };
-  // MODULO PARA LA IMAGEN
-  const onDrop = useCallback((acceptedFiles) => {
-    if (acceptedFiles.length > 1) {
-      return AlertaInformativa({
-        Titulo: "¡No más de una imagen!",
-        Mensaje: "Solo puedes subir una imagen, por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    if (!acceptedFiles[0].type.startsWith("image")) {
-      return AlertaInformativa({
-        Titulo: "¡Archivo no valido!",
-        Mensaje:
-          "Uno de los archivos no es una imagen, por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    if (acceptedFiles[0].size > 10000000) {
-      return AlertaInformativa({
-        Titulo: "Imagen demasiado grande!",
-        Mensaje:
-          "La imagen seleccionada es demasiado grande y sobre pasa el tamaño permitido (10MB), por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    // SI PASA LAS VALIDACIONES, GUARDAMOS LA IMAGEN
-    establecerImagenSeleccionada(acceptedFiles[0]);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   // PETICION DE ACTUALIZAR UNA DEPENDENCIA
   const PeticionActualizarDependencia = handleSubmit(async (data) => {
     if (!ubicacion) {
@@ -141,9 +107,6 @@ export const useEditarDependencia = ({
       ManejarRespuestasDelServidor();
     }
   });
-  const ImagenDependencia = imagenSeleccionada
-    ? URL.createObjectURL(imagenSeleccionada)
-    : `${HOST_IMAGENES}/Dependencias/${infDependencia.foto}`;
 
   return {
     register,
@@ -152,10 +115,6 @@ export const useEditarDependencia = ({
     establecerUbicacion,
     dependenciaActiva,
     establecerDependenciaActiva,
-    getRootProps,
-    getInputProps,
-    isDragActive,
     PeticionActualizarDependencia,
-    ImagenDependencia,
   };
-};
+}

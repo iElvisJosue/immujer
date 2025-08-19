@@ -1,19 +1,20 @@
 // LIBRERÍAS A USAR
-import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { useDropzone } from "react-dropzone";
 // CONTEXTOS A USAR
 import { useBoletines } from "../../context/BoletinesContext";
+// AYUDAS A USAR
 import {
   AlertaInformativa,
   AlertaRealizandoPeticion,
 } from "../../helpers/TiposDeAlertas";
-// AYUDAS A USAR
 import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/AgregarCookiePeticion";
-export const useRegistrarBoletin = ({ idUsuario }) => {
-  const [imagenSeleccionada, establecerImagenSeleccionada] = useState(null);
+export default function useRegistrarBoletin({
+  idUsuario,
+  imagenSeleccionada,
+  establecerImagenSeleccionada,
+}) {
   const { RegistrarNuevoBoletin } = useBoletines();
   const {
     handleSubmit,
@@ -44,38 +45,6 @@ export const useRegistrarBoletin = ({ idUsuario }) => {
       />
     );
   };
-  // MODULO PARA LA IMAGEN
-  const onDrop = useCallback((acceptedFiles) => {
-    if (acceptedFiles.length > 1) {
-      return AlertaInformativa({
-        Titulo: "¡No más de una imagen!",
-        Mensaje: "Solo puedes subir una imagen, por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    if (!acceptedFiles[0].type.startsWith("image")) {
-      return AlertaInformativa({
-        Titulo: "¡Archivo no valido!",
-        Mensaje:
-          "Uno de los archivos no es una imagen, por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    if (acceptedFiles[0].size > 10000000) {
-      return AlertaInformativa({
-        Titulo: "Imagen demasiado grande!",
-        Mensaje:
-          "La imagen seleccionada es demasiado grande y sobre pasa el tamaño permitido (10MB), por favor inténtalo de nuevo.",
-        Imagen: "Imagenes/Alerta_Duplicado.png",
-        ColorAlerta: "Rojo",
-      });
-    }
-    // SI PASA LAS VALIDACIONES, GUARDAMOS LA IMAGEN
-    establecerImagenSeleccionada(acceptedFiles[0]);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   // PETICION DE REGISTRO
   const PeticionRegistrarBoletin = handleSubmit(async (data) => {
     if (!imagenSeleccionada) {
@@ -114,19 +83,10 @@ export const useRegistrarBoletin = ({ idUsuario }) => {
       ManejarRespuestasDelServidor();
     }
   });
-  const ImagenBoletin = imagenSeleccionada
-    ? URL.createObjectURL(imagenSeleccionada)
-    : "Imagenes/Agregar_Imagen.png";
-
   return {
     register,
-    imagenSeleccionada,
-    getRootProps,
-    getInputProps,
-    isDragActive,
     PeticionRegistrarBoletin,
     ReiniciarRegistro,
     CampoRequerido,
-    ImagenBoletin,
   };
-};
+}

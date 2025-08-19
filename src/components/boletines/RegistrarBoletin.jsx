@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // HOOKS A USAR
-import { useRegistrarBoletin } from "../../hooks/boletines/useRegistrarBoletin";
+import useRegistrarBoletin from "../../hooks/boletines/useRegistrarBoletin";
+import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
 import FooterBotones from "../global/FooterBotones";
 // AYUDAS A USAR
@@ -11,16 +12,22 @@ import "../../styles/components/boletines/RegistrarBoletin.css";
 
 export default function RegistrarBoletin({ idUsuario }) {
   const {
-    register,
-    ImagenBoletin,
     getRootProps,
     getInputProps,
     isDragActive,
+    imagenSeleccionada,
+    establecerImagenSeleccionada,
+    ImagenPreview,
+  } = useArrastrarImagen({});
+  const {
+    register,
     PeticionRegistrarBoletin,
     ReiniciarRegistro,
     CampoRequerido,
   } = useRegistrarBoletin({
     idUsuario,
+    imagenSeleccionada,
+    establecerImagenSeleccionada,
   });
 
   return (
@@ -38,7 +45,7 @@ export default function RegistrarBoletin({ idUsuario }) {
           {isDragActive ? (
             <img src="Imagenes/Arrastrar_Imagen.png" alt="Agregar Imagen" />
           ) : (
-            <img src={ImagenBoletin} alt="Foto boletin" />
+            <img src={ImagenPreview} alt="Foto boletin" />
           )}
         </picture>
       </div>

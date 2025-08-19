@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // HOOKS A USAR
-import { useRegistrarDependencia } from "../../hooks/dependencias/useRegistrarDependencia";
+import useRegistrarDependencia from "../../hooks/dependencias/useRegistrarDependencia";
+import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
 import Titulo from "../global/Titulo";
 import Separador from "../global/Separador";
@@ -15,18 +16,24 @@ import "../../styles/components/dependencias/RegistrarDependencia.css";
 
 export default function RegistrarDependencia({ idUsuario }) {
   const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    imagenSeleccionada,
+    establecerImagenSeleccionada,
+    ImagenPreview,
+  } = useArrastrarImagen({});
+  const {
     register,
     CampoRequerido,
     ubicacion,
     establecerUbicacion,
-    getRootProps,
-    getInputProps,
-    isDragActive,
     PeticionRegistrarDependencia,
     ReiniciarRegistro,
-    ImagenDependencia,
   } = useRegistrarDependencia({
     idUsuario,
+    imagenSeleccionada,
+    establecerImagenSeleccionada,
   });
 
   return (
@@ -47,7 +54,7 @@ export default function RegistrarDependencia({ idUsuario }) {
           {isDragActive ? (
             <img src="Imagenes/Arrastrar_Imagen.png" alt="Agregar Imagen" />
           ) : (
-            <img src={ImagenDependencia} alt="Foto dependencia" />
+            <img src={ImagenPreview} alt="Foto dependencia" />
           )}
         </picture>
       </div>

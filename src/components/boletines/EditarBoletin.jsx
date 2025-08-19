@@ -1,31 +1,39 @@
 /* eslint-disable react/prop-types */
 // HOOKS A USAR
-import { useEditarBoletin } from "../../hooks/boletines/useEditarBoletin";
+import useEditarBoletin from "../../hooks/boletines/useEditarBoletin";
+import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
+import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 import FooterBotones from "../global/FooterBotones";
 // AYUDAS A USAR
 import { LISTA_SVGS } from "../../helpers/SVGs";
+import { HOST_IMAGENES } from "../../helpers/Urls";
 import { MENSAJES_DE_VALIDACION } from "../../helpers/MensajesValidaciones";
 // ESTILOS A USAR
 import "../../styles/components/boletines/EditarBoletin.css";
-import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 
 export default function EditarBoletin({
   infBoletinSeleccionado,
   establecerSubvistaActual,
 }) {
   const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    imagenSeleccionada,
+    ImagenPreview,
+  } = useArrastrarImagen({
+    urlImagenActual: `${HOST_IMAGENES}/Boletines/${infBoletinSeleccionado.imagen}`,
+  });
+  const {
     register,
     CampoRequerido,
     boletinActivo,
     establecerBoletinActivo,
-    getRootProps,
-    getInputProps,
-    isDragActive,
     PeticionEditarBoletin,
-    ImagenBoletin,
   } = useEditarBoletin({
     infBoletin: infBoletinSeleccionado,
+    imagenSeleccionada,
     establecerSubvistaActual,
   });
 
@@ -53,7 +61,7 @@ export default function EditarBoletin({
           {isDragActive ? (
             <img src="Imagenes/Arrastrar_Imagen.png" alt="Agregar Imagen" />
           ) : (
-            <img src={ImagenBoletin} alt="Foto boletin" />
+            <img src={ImagenPreview} alt="Foto boletin" />
           )}
         </picture>
       </div>

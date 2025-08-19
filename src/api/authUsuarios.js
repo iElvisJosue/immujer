@@ -19,4 +19,4 @@ export const SolicitudBuscarUsuariosPorFiltro = (data) =>
     AgregarCookiePeticion(data)
   );
 export const SolicitudEditarUnUsuario = (data) =>
-  axios.put("/web/usuarios/editar-un-usuario", AgregarCookiePeticion(data));
+  axios.put("/web/usuarios/editar-un-usuario", data);

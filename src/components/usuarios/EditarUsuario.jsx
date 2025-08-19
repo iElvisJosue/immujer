@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 // HOOKS A USAR
 import useEditarUsuario from "../../hooks/usuarios/useEditarUsuario";
+import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
 import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 import FooterBotones from "../global/FooterBotones";
 // AYUDAS A USAR
 import { LISTA_SVGS } from "../../helpers/SVGs";
 import { MENSAJES_DE_VALIDACION } from "../../helpers/MensajesValidaciones";
+import { HOST_IMAGENES } from "../../helpers/Urls";
 import { REGEX_SOLO_NUMEROS, REGEX_CORREO } from "../../helpers/Regex";
 // ESTILOS A USAR
 import "../../styles/components/usuarios/EditarUsuario.css";
@@ -15,6 +17,15 @@ export default function EditarUsuario({
   infUsuarioSeleccionado,
   establecerSubvistaActual,
 }) {
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    imagenSeleccionada,
+    ImagenPreview,
+  } = useArrastrarImagen({
+    urlImagenActual: `${HOST_IMAGENES}/Perfil/${infUsuarioSeleccionado.foto}`,
+  });
   const {
     register,
     VerContrasena,
@@ -26,6 +37,7 @@ export default function EditarUsuario({
     PeticionEditarUsuario,
   } = useEditarUsuario({
     infUsuario: infUsuarioSeleccionado,
+    imagenSeleccionada,
     establecerSubvistaActual,
   });
 
@@ -39,6 +51,23 @@ export default function EditarUsuario({
         >
           x
         </button>
+      </div>
+      <div className="EditarBoletin__SeleccionarImagen">
+        <picture
+          {...getRootProps()}
+          className="EditarBoletin__SeleccionarImagen__Label"
+        >
+          <input
+            {...getInputProps()}
+            accept=".jpg, .jpeg, .png"
+            multiple={false}
+          />
+          {isDragActive ? (
+            <img src="Imagenes/Arrastrar_Imagen.png" alt="Agregar Imagen" />
+          ) : (
+            <img src={ImagenPreview} alt="Foto del usuario" />
+          )}
+        </picture>
       </div>
       <OpcionesDeSwitches
         Opciones={[
