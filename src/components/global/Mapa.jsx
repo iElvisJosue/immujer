@@ -10,6 +10,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default function MapPicker({
+  iconoPing = "Imagenes/PinCasa.png",
+  textoPin = "Ubicación seleccionada:",
   ubicacion,
   establecerUbicacion,
   center = [16.85416, -99.85405],
@@ -17,7 +19,7 @@ export default function MapPicker({
 }) {
   // Icono personalizado para el marcador
   const markerIcon = new L.Icon({
-    iconUrl: "Imagenes/PinMapa.png",
+    iconUrl: iconoPing,
     iconSize: [41, 41],
     iconAnchor: [20, 41], // [x, y] - punto inferior central del ícono
     popupAnchor: [0, -41], // donde aparece el popup relativo al iconAnchor
@@ -54,7 +56,7 @@ export default function MapPicker({
         {ubicacion && (
           <Marker position={ubicacion} icon={markerIcon}>
             <Popup>
-              Ubicación seleccionada:
+              {textoPin}
               <br />
               <center>
                 {ubicacion.lat.toFixed(5)}, {ubicacion.lng.toFixed(5)}

@@ -167,6 +167,8 @@ export default function DetallesLlamada({
           Ubicación de la llamada
         </p>
         <Mapa
+          iconoPing="Imagenes/PinLlamada.png"
+          textoPin="Ubicación de la llamada:"
           ubicacion={{
             lat: infLlamadaSeleccionada.latitud,
             lng: infLlamadaSeleccionada.longitud,
@@ -175,7 +177,6 @@ export default function DetallesLlamada({
             infLlamadaSeleccionada.latitud,
             infLlamadaSeleccionada.longitud,
           ]}
-          zoom={20}
         />
       </section>
     </div>

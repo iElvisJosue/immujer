@@ -236,6 +236,7 @@ export default function EditarDependencia({
       <Separador />
       <Titulo>Ubicación actual</Titulo>
       <Mapa
+        textoPin="Ubicación de la dependencia:"
         ubicacion={ubicacion}
         establecerUbicacion={establecerUbicacion}
         center={[ubicacion.lat, ubicacion.lng]}
