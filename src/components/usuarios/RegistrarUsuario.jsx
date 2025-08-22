@@ -13,7 +13,7 @@ import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 export default function RegistrarUsuario() {
   const {
     register,
-    VerContrasena,
+    verContrasena,
     establecerVerContrasena,
     InputContrasena,
     CampoRequerido,
@@ -27,11 +27,11 @@ export default function RegistrarUsuario() {
         Opciones={[
           {
             Titulo: "Ver contraseña",
-            Activo: VerContrasena,
+            Activo: verContrasena,
             IconoDesactivado: "eye-off-outline",
             IconoActivado: "eye",
             FuncionDeEstablecimiento: establecerVerContrasena,
-            ValorDeEstablecimiento: VerContrasena,
+            ValorDeEstablecimiento: verContrasena,
           },
         ]}
       />

@@ -5,6 +5,7 @@ import Llamadas from "./views/Llamadas";
 import Dependencias from "./views/Dependencias";
 import Boletines from "./views/Boletines";
 import Usuarios from "./views/Usuarios";
+import Notificaciones from "./views/Notificaciones";
 import Perfil from "./views/Perfil";
 
 export const rutasPublicas = [
@@ -33,6 +34,10 @@ export const rutasParaAdministrador = [
   {
     path: "/Usuarios",
     element: <Usuarios />,
+  },
+  {
+    path: "/Notificaciones",
+    element: <Notificaciones />,
   },
   {
     path: "/Perfil",

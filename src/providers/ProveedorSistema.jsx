@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import { SolicitudVerificarToken } from "../api/authSistema";
+import {
+  SolicitudVerificarToken,
+  SolicitudEnviarNotificacion,
+} from "../api/authSistema";
 import { SistemaContext } from "../context/SistemaContext";
 // IMPORTAMOS LAS AYUDAS
 import { TOKEN_DE_ACCESO_SISTEMA } from "../helpers/Constantes";
@@ -49,6 +52,14 @@ export const ProveedorSistema = ({ children }) => {
     }
   };
 
+  const EnviarNotificacion = async (data) => {
+    try {
+      const res = await SolicitudEnviarNotificacion(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
   return (
     <SistemaContext.Provider
       value={{
@@ -57,6 +68,7 @@ export const ProveedorSistema = ({ children }) => {
         cargandoInformacion,
         obtenerInformacionNuevamente,
         establecerObtenerInformacionNuevamente,
+        EnviarNotificacion,
       }}
     >
       {children}

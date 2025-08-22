@@ -10,7 +10,7 @@ export default function useRegistrarUsuario() {
   // PETICION A REALIZAR
   const { RegistrarNuevoUsuario } = useUsuarios();
   //   ESTADOS DEL COMPONENTE
-  const [VerContrasena, establecerVerContrasena] = useState(false);
+  const [verContrasena, establecerVerContrasena] = useState(false);
   // VALIDACIONES PARA EL FORMULARIO
   const {
     handleSubmit,
@@ -20,7 +20,7 @@ export default function useRegistrarUsuario() {
   } = useForm({
     criteriaMode: "all",
   });
-  const InputContrasena = VerContrasena ? "text" : "password";
+  const InputContrasena = verContrasena ? "text" : "password";
   const ReiniciarRegistro = () => {
     reset();
   };
@@ -59,7 +59,7 @@ export default function useRegistrarUsuario() {
 
   return {
     register,
-    VerContrasena,
+    verContrasena,
     establecerVerContrasena,
     InputContrasena,
     CampoRequerido,

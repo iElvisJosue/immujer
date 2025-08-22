@@ -11,6 +11,7 @@ export const MENSAJES_DE_VALIDACION = {
   MAX15: "¡Este campo no puede tener más de 15 caracteres! 🔠",
   MAX20: "¡Este campo no puede tener más de 20 caracteres! 🔠",
   MAX50: "¡Este campo no puede tener más de 50 caracteres! 🔠",
+  MAX60: "¡Este campo no puede tener más de 60 caracteres! 🔠",
   MAX100: "¡Este campo no puede tener más de 100 caracteres! 🔠",
   MAX150: "¡Este campo no puede tener más de 150 caracteres! 🔠",
   MAX255: "¡Este campo no puede tener más de 255 caracteres! 🔠",
