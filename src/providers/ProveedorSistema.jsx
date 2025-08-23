@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import {
   SolicitudVerificarToken,
-  SolicitudEnviarNotificacion,
+  SolicitudBuscarNotificacionesPorFiltro,
+  SolicitudEnviarNotificacionGlobal,
+  SolicitudEnviarNotificacionPersonalizada,
 } from "../api/authSistema";
 import { SistemaContext } from "../context/SistemaContext";
 // IMPORTAMOS LAS AYUDAS
@@ -52,9 +54,25 @@ export const ProveedorSistema = ({ children }) => {
     }
   };
 
-  const EnviarNotificacion = async (data) => {
+  const BuscarNotificacionesPorFiltro = async (data) => {
     try {
-      const res = await SolicitudEnviarNotificacion(data);
+      const res = await SolicitudBuscarNotificacionesPorFiltro(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
+  const EnviarNotificacionGlobal = async (data) => {
+    try {
+      const res = await SolicitudEnviarNotificacionGlobal(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
+  const EnviarNotificacionPersonalizada = async (data) => {
+    try {
+      const res = await SolicitudEnviarNotificacionPersonalizada(data);
       return res;
     } catch (error) {
       return error;
@@ -68,7 +86,9 @@ export const ProveedorSistema = ({ children }) => {
         cargandoInformacion,
         obtenerInformacionNuevamente,
         establecerObtenerInformacionNuevamente,
-        EnviarNotificacion,
+        BuscarNotificacionesPorFiltro,
+        EnviarNotificacionGlobal,
+        EnviarNotificacionPersonalizada,
       }}
     >
       {children}

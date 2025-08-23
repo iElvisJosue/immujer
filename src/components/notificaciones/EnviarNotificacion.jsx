@@ -4,7 +4,6 @@ import useEnviarNotificacion from "../../hooks/notificaciones/useEnviarNotificac
 import useArrastrarImagen from "../../hooks/globales/useArrastrarImagen";
 // COMPONENTES A USAR
 import FooterBotones from "../global/FooterBotones";
-import OpcionesDeSwitches from "../global/OpcionesDeSwitches";
 // AYUDAS A USAR
 import { LISTA_SVGS } from "../../helpers/SVGs";
 import { MENSAJES_DE_VALIDACION } from "../../helpers/MensajesValidaciones";
@@ -21,8 +20,6 @@ export default function EnviarNotificacion({ idUsuario }) {
     ImagenPreview,
   } = useArrastrarImagen({});
   const {
-    paraTodos,
-    establecerParaTodos,
     register,
     PeticionEnviarNotificacion,
     ReiniciarRegistro,
@@ -35,18 +32,6 @@ export default function EnviarNotificacion({ idUsuario }) {
 
   return (
     <form onSubmit={PeticionEnviarNotificacion} className="EnviarNotificacion">
-      <OpcionesDeSwitches
-        Opciones={[
-          {
-            Titulo: paraTodos ? "Todos los usuarios" : "Usuarios seleccionados",
-            Activo: paraTodos,
-            IconoDesactivado: "person",
-            IconoActivado: "people",
-            FuncionDeEstablecimiento: establecerParaTodos,
-            ValorDeEstablecimiento: paraTodos,
-          },
-        ]}
-      />
       <div className="EnviarNotificacion__SeleccionarImagen">
         <picture
           {...getRootProps()}

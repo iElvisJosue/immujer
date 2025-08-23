@@ -5,7 +5,7 @@ import PlatillaMain from "./PlantillaMain";
 // HOOKS A USAR
 import useNotificaciones from "../hooks/notificaciones/useNotificaciones";
 // COMPONENTES A USAR
-import ListaCompletaUsuarios from "../components/usuarios/ListaCompletaUsuarios";
+import ListaCompletaNotificaciones from "../components/notificaciones/ListaCompletaNotificaciones.jsx";
 import EnviarNotificacion from "../components/notificaciones/EnviarNotificacion";
 
 export default function Notificaciones() {
@@ -15,7 +15,7 @@ export default function Notificaciones() {
     useNotificaciones();
   // CREAMOS UNAS LISTAS PARA LAS VISTAS DE LOS COMPONENTES
   const listaDeComponentes = {
-    0: ListaCompletaUsuarios,
+    0: ListaCompletaNotificaciones,
     1: EnviarNotificacion,
   };
   // AGREGAMOS AL OBJETO DE PROPS COMPARTIDOS EL ID DEL USUARIO

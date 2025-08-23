@@ -120,7 +120,7 @@ export const ManejarRespuestasDelServidor = ({ status, data: message }) => {
     default:
       return Swal.fire({
         title: "¡Error en el servidor!",
-        text: "Ha ocurrido un error en el servidor. Por favor inténtalo de nuevo.",
+        text: "Ha ocurrido un error inesperado. Por favor inténtalo de nuevo.",
         imageUrl: "Imagenes/Alerta_ErrorServidor.png",
         imageWidth: 150,
         showCancelButton: false,

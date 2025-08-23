@@ -1,22 +1,45 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 // COMPONENTES A USAR
 import Mapa from "../global/Mapa";
 import Separador from "../global/Separador";
+// COMPONENTES A USAR
+import ModalEnviarNotificacionPersonalizada from "./ModalEnviarNotificacionPersonalizada";
 //AYUDAS A USAR
 import { FormatearFechaALetra } from "../../helpers/FuncionesGenerales";
 import { LISTA_SVGS } from "../../helpers/SVGs";
 // ESTILOS A USAR
 import "../../styles/components/llamadas/DetallesLlamada.css";
 export default function DetallesLlamada({
+  idUsuario,
   vieneDeVistaCompleta,
   establecerSubvistaActual,
   infLlamadaSeleccionada,
 }) {
+  const [verModalNotificacion, establecerVerModalNotificacion] =
+    useState(false);
   const ManejarVistaDeRegreso = () => {
     establecerSubvistaActual(vieneDeVistaCompleta ? 0 : 1);
   };
   return (
     <div className="DetallesLlamada">
+      {verModalNotificacion && (
+        <ModalEnviarNotificacionPersonalizada
+          idCreador={idUsuario}
+          idUsuarioDestino={infLlamadaSeleccionada.id_usuario}
+          idOneSignal={infLlamadaSeleccionada.id_one_signal}
+          NombreCompleto={
+            infLlamadaSeleccionada.nombre +
+            " " +
+            infLlamadaSeleccionada.apellido_paterno +
+            " " +
+            infLlamadaSeleccionada.apellido_materno
+          }
+          onCerrarModal={() => {
+            establecerVerModalNotificacion(false);
+          }}
+        />
+      )}
       <section className="DetallesLlamada__Contenido">
         <header className="DetallesLlamada__Contenido--Header">
           <button
@@ -25,14 +48,23 @@ export default function DetallesLlamada({
           >
             <LISTA_SVGS SVG="REGRESAR" Tamaño="24" Clase="SVG Blanco" />
           </button>
-          {/* <span className="DetallesLlamada__Contenido--Header--Acciones">
-            <button
-              className="DetallesLlamada__Contenido--Header--Boton Imprimir"
-              title="Imprimir reporte"
-            >
-              <LISTA_SVGS SVG="IMPRIMIR" Tamaño="30" Clase="SVG Blanco" />
-            </button>
-          </span> */}
+          {infLlamadaSeleccionada.id_one_signal && (
+            <span className="DetallesLlamada__Contenido--Header--Acciones">
+              <button
+                className="DetallesLlamada__Contenido--Header--Boton Imprimir"
+                title="Enviar notificación"
+                onClick={() => {
+                  establecerVerModalNotificacion(true);
+                }}
+              >
+                <LISTA_SVGS
+                  SVG="NOTIFICACIONES"
+                  Tamaño="22"
+                  Clase="SVG Blanco"
+                />
+              </button>
+            </span>
+          )}
         </header>
         <Separador />
         <p className="DetallesLlamada__Contenido--Card Header">Generales</p>

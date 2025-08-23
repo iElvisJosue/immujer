@@ -1,5 +1,4 @@
 // LIBRERÍAS A USAR
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
@@ -16,8 +15,7 @@ export default function useEnviarNotificacion({
   imagenSeleccionada,
   establecerImagenSeleccionada,
 }) {
-  const { EnviarNotificacion } = useSistema();
-  const [paraTodos, establecerParaTodos] = useState(true);
+  const { EnviarNotificacionGlobal } = useSistema();
   const {
     handleSubmit,
     register,
@@ -28,7 +26,6 @@ export default function useEnviarNotificacion({
   });
   const ReiniciarRegistro = () => {
     establecerImagenSeleccionada(null);
-    establecerParaTodos(true);
     reset();
   };
   // CAMPO DEL MENSAJE DE ERROR
@@ -60,9 +57,8 @@ export default function useEnviarNotificacion({
       formData.append("idCreador", idUsuario);
       formData.append("TituloNotificacion", data.TituloNotificacion);
       formData.append("DetallesNotificacion", data.DetallesNotificacion);
-      formData.append("ParaTodos", paraTodos ? "Si" : "No");
       formData.append("Imagen", imagenSeleccionada);
-      const res = await EnviarNotificacion(formData);
+      const res = await EnviarNotificacionGlobal(formData);
       if (res.response) {
         const { data } = res.response;
         AlertaInformativa({
@@ -74,9 +70,7 @@ export default function useEnviarNotificacion({
       } else {
         AlertaInformativa({
           Titulo: "¡Notificación enviada!",
-          Mensaje: `La notificación ha sido enviada con exito a ${
-            paraTodos ? "todos los usuarios." : "los usuarios seleccionados."
-          }`,
+          Mensaje: `La notificación ha sido enviada con exito a todas las usuarias`,
           Imagen: "Imagenes/Alerta_Exito_Notificacion.png",
           ColorAlerta: "Verde",
         });
@@ -88,8 +82,6 @@ export default function useEnviarNotificacion({
     }
   });
   return {
-    paraTodos,
-    establecerParaTodos,
     register,
     PeticionEnviarNotificacion,
     ReiniciarRegistro,

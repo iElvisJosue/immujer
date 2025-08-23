@@ -45,7 +45,7 @@ export default function useArrastrarImagen({
         AlertaInformativa({
           Titulo: "¡Error!",
           Mensaje: "No se pudo procesar la imagen, inténtalo de nuevo.",
-          Imagen: "Imagenes/Alerta_Duplicado.png",
+          Imagen: "Imagenes/Alerta_Error_Imagen.png",
           ColorAlerta: "Rojo",
         });
         establecerImagenSeleccionada(null);

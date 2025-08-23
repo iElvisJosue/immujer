@@ -1,3 +1,5 @@
+// CONTEXTOS A USAR
+import { useSistema } from "../context/SistemaContext";
 // HOOKS A USAR
 import useLlamadas from "../hooks/llamadas/useLlamadas";
 // PLANTILLA A USAR
@@ -8,6 +10,7 @@ import ListaPorFechaLlamadas from "../components/llamadas/ListaPorFechaLlamadas"
 import DetallesLlamada from "../components/llamadas/DetallesLlamada";
 
 export default function Dependencias() {
+  const { infUsuario } = useSistema();
   // OBTENEMOS LOS VALORES DE LOS HOOKS QUE VAMOS A UTILIZAR
   const { TitulosSubvista, OpcionesDeNavegacion, PropsCompartidos } =
     useLlamadas();
@@ -17,6 +20,8 @@ export default function Dependencias() {
     1: ListaPorFechaLlamadas,
     2: DetallesLlamada,
   };
+  // AGREGAMOS AL OBJETO DE PROPS COMPARTIDOS EL ID DEL USUARIO
+  PropsCompartidos.idUsuario = infUsuario.id_usuario;
   // OBTENEMOS EL COMPONENTE QUE VAMOS A RENDERIZAR
   const ComponenteParaRenderizar =
     listaDeComponentes[PropsCompartidos.subvistaActual];
