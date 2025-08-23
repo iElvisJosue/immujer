@@ -85,7 +85,7 @@ export default function useEditarUsuario({
       formData.append("ActivoUsuario", usuarioActivo ? "Si" : "No");
       formData.append("Imagen", imagenSeleccionada);
       const res = await EditarUnUsuario(formData);
-      alert("La respuesta del servidor es: " + JSON.stringify(res));
+      alert("LA IMAGEN ES: " + imagenSeleccionada);
       if (res.response) {
         // const { status, data } = res.response;
         // ManejarRespuestasDelServidor({ status, data });
