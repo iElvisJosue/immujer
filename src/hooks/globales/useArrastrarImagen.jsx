@@ -16,7 +16,8 @@ export default function useArrastrarImagen({
         ColorAlerta: "Rojo",
       });
     }
-    if (!acceptedFiles[0].type.startsWith("image")) {
+    const IMAGEN = acceptedFiles[0];
+    if (!IMAGEN.type.startsWith("image")) {
       return AlertaInformativa({
         Titulo: "¡Archivo no valido!",
         Mensaje:
@@ -25,7 +26,7 @@ export default function useArrastrarImagen({
         ColorAlerta: "Rojo",
       });
     }
-    if (acceptedFiles[0].size > 10000000) {
+    if (IMAGEN.size > 10000000) {
       return AlertaInformativa({
         Titulo: "Imagen demasiado grande!",
         Mensaje:
@@ -35,9 +36,35 @@ export default function useArrastrarImagen({
       });
     }
     // SI PASA LAS VALIDACIONES, GUARDAMOS LA IMAGEN
-    establecerImagenSeleccionada(acceptedFiles[0]);
+    try {
+      const reader = new FileReader();
+      reader.onload = () => {
+        establecerImagenSeleccionada(IMAGEN);
+      };
+      reader.onerror = () => {
+        AlertaInformativa({
+          Titulo: "¡Error!",
+          Mensaje: "No se pudo procesar la imagen, inténtalo de nuevo.",
+          Imagen: "Imagenes/Alerta_Duplicado.png",
+          ColorAlerta: "Rojo",
+        });
+      };
+      reader.readAsArrayBuffer(IMAGEN);
+    } catch (error) {
+      console.error("Error procesando imagen:", error);
+    }
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpeg", ".jpg", ".png", ".webp"],
+    },
+    maxSize: 10485760, // 10MB
+    maxFiles: 1,
+    multiple: false,
+    useFsAccessApi: false, // CRÍTICO: Evita errores en móviles
+    preventDropOnDocument: true,
+  });
 
   const ImagenPreview = imagenSeleccionada
     ? URL.createObjectURL(imagenSeleccionada)
