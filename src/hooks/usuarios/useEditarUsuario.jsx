@@ -6,6 +6,8 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useUsuarios } from "../../context/UsuariosContext";
 // AYUDAS A USAR
 import { COOKIE_CON_TOKEN } from "../../helpers/AgregarCookiePeticion";
+7;
+import { AlertaRealizandoPeticion } from "../../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
 export default function useEditarUsuario({
   infUsuario,
@@ -58,6 +60,9 @@ export default function useEditarUsuario({
     );
   };
   const PeticionEditarUsuario = handleSubmit(async (data) => {
+    // MOSTRAMOS LA ALERTA DE REALIZANDO PETICIÓN
+    // LA ALERTA SE CERRARA AUTOMATICAMENTE AL TERMINAR LA PETICIÓN
+    AlertaRealizandoPeticion();
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();

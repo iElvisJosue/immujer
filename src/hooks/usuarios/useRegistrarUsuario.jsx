@@ -5,6 +5,7 @@ import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
 import { useUsuarios } from "../../context/UsuariosContext";
 // AYUDAS A USAR
+import { AlertaRealizandoPeticion } from "../../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
 export default function useRegistrarUsuario() {
   // PETICION A REALIZAR
@@ -41,6 +42,9 @@ export default function useRegistrarUsuario() {
     );
   };
   const PeticionRegistrarUsuario = handleSubmit(async (data) => {
+    // MOSTRAMOS LA ALERTA DE REALIZANDO PETICIÓN
+    // LA ALERTA SE CERRARA AUTOMATICAMENTE AL TERMINAR LA PETICIÓN
+    AlertaRealizandoPeticion();
     try {
       const res = await RegistrarNuevoUsuario(data);
       if (res.response) {
