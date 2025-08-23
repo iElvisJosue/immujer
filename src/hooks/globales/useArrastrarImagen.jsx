@@ -48,6 +48,7 @@ export default function useArrastrarImagen({
           Imagen: "Imagenes/Alerta_Duplicado.png",
           ColorAlerta: "Rojo",
         });
+        establecerImagenSeleccionada(null);
       };
       reader.readAsArrayBuffer(IMAGEN);
     } catch (error) {
