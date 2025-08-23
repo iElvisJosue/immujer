@@ -85,15 +85,15 @@ export default function useEditarUsuario({
       formData.append("ActivoUsuario", usuarioActivo ? "Si" : "No");
       formData.append("Imagen", imagenSeleccionada);
       const res = await EditarUnUsuario(formData);
-      if (res.response) {
-        alert("ERROR EN RESPONSE", res.response);
-        // const { status, data } = res.response;
-        // ManejarRespuestasDelServidor({ status, data });
-      } else {
-        const { status, data } = res;
-        ManejarRespuestasDelServidor({ status, data });
-        establecerSubvistaActual(0);
-      }
+      alert("ERROR EN RESPONSE", res.response);
+      // if (res.response) {
+      //   // const { status, data } = res.response;
+      //   // ManejarRespuestasDelServidor({ status, data });
+      // } else {
+      //   const { status, data } = res;
+      //   ManejarRespuestasDelServidor({ status, data });
+      //   establecerSubvistaActual(0);
+      // }
     } catch (error) {
       alert("ERROR EN CATCH", error);
       // console.log(error);
