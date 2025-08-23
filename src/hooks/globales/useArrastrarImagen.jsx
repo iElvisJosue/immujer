@@ -60,8 +60,6 @@ export default function useArrastrarImagen({
     accept: {
       "image/*": [".jpeg", ".jpg", ".png"],
     },
-    maxSize: 10485760, // 10MB
-    maxFiles: 1,
     multiple: false,
     useFsAccessApi: false, // CRÍTICO: Evita errores en móviles
     preventDropOnDocument: true,
