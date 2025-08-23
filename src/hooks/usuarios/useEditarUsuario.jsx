@@ -94,6 +94,7 @@ export default function useEditarUsuario({
         establecerSubvistaActual(0);
       }
     } catch (error) {
+      alert(error);
       const { status, data } = error.response;
       ManejarRespuestasDelServidor({ status, data });
     }
