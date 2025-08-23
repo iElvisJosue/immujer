@@ -85,7 +85,7 @@ export default function useEditarUsuario({
       formData.append("ActivoUsuario", usuarioActivo ? "Si" : "No");
       formData.append("Imagen", imagenSeleccionada);
       const res = await EditarUnUsuario(formData);
-      alert("LA IMAGEN ES: " + imagenSeleccionada);
+      alert("LA IMAGEN ES: " + imagenSeleccionada.name);
       if (res.response) {
         // const { status, data } = res.response;
         // ManejarRespuestasDelServidor({ status, data });
@@ -95,9 +95,8 @@ export default function useEditarUsuario({
         establecerSubvistaActual(0);
       }
     } catch (error) {
-      alert("El error es: " + error);
-      // const { status, data } = error.response;
-      // ManejarRespuestasDelServidor({ status, data });
+      console.log(error);
+      ManejarRespuestasDelServidor();
     }
   });
 
