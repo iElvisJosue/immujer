@@ -55,7 +55,9 @@ export default function ListaCompletaUsuarios({
             Imagen={`${HOST_IMAGENES}/Perfil/${infUsuario.foto}`}
             Titulo={`${infUsuario.rol.toUpperCase()} - ${infUsuario.nombre} ${
               infUsuario.apellido_paterno
-            } ${infUsuario.apellido_materno}`}
+            } ${infUsuario.apellido_materno} ${
+              infUsuario.id_one_signal ? "🔔" : "🔕"
+            }`}
             ID={infUsuario.id_usuario}
             Descripcion={`${infUsuario.colonia}, ${infUsuario.codigo_postal}`}
             Detalles={`${
