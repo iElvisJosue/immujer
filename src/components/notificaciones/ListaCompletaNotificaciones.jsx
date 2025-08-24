@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 // IMPORTAMOS LOS HOOKS
 import useBuscarNotificacionesPorFiltro from "../../hooks/notificaciones/useBuscarNotificacionesPorFiltro";
+import useBuscarDetallesNotificacion from "../../hooks/notificaciones/useBuscarDetallesNotificacion";
 // COMPONENTES A USAR
 import Buscador from "../global/Buscardor";
 import InformacionRegistro from "../global/InformacionRegistro";
+import ModalDetallesNotificacion from "./ModalDetallesNotificacion";
 import SinResultados from "../global/SinResultados";
 import Cargando from "../global/Cargando";
 // IMPORTAMOS LAS AYUDAS
@@ -21,9 +23,23 @@ export default function ListaCompletaNotificaciones({
     useBuscarNotificacionesPorFiltro({
       filtroBusqueda,
     });
+  const {
+    EstablecerUUIDYVerModal,
+    verModalDetalles,
+    establecerVerModalDetalles,
+    infNotificacion,
+    cargandoInfNotificacion,
+  } = useBuscarDetallesNotificacion();
 
   return (
     <section className="ListaCompletaNotificaciones">
+      {verModalDetalles && (
+        <ModalDetallesNotificacion
+          cargandoInfNotificacion={cargandoInfNotificacion}
+          infNotificacion={infNotificacion}
+          onCerrarModal={() => establecerVerModalDetalles(false)}
+        />
+      )}
       <Buscador
         TextoLabel="Buscar notificaciones"
         ValorInput={filtroBusqueda}
@@ -47,9 +63,9 @@ export default function ListaCompletaNotificaciones({
               infNotificacion.fecha_creacion.slice(0, 10)
             )} a las ${infNotificacion.hora_creacion}`}
             // Color={infNotificacion.activo ? "" : "Rojo"}
-            // FuncionParaRealizar={() =>
-            //   EstablecerUsuarioSeleccionado(infNotificacion)
-            // }
+            FuncionParaRealizar={() =>
+              EstablecerUUIDYVerModal(infNotificacion.uuid_notificacion)
+            }
           />
         ))
       ) : (

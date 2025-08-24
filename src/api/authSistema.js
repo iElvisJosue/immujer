@@ -1,5 +1,8 @@
 import axios from "./axios";
-import { AgregarCookiePeticion } from "../helpers/AgregarCookiePeticion";
+import {
+  AgregarCookiePeticion,
+  COOKIE_CON_TOKEN,
+} from "../helpers/AgregarCookiePeticion";
 
 export const SolicitudVerificarToken = (data) =>
   axios.post("web/sistema/verificar-token", data);
@@ -14,4 +17,8 @@ export const SolicitudEnviarNotificacionPersonalizada = (data) =>
   axios.post(
     "/web/sistema/enviar-notificacion-personalizada",
     AgregarCookiePeticion(data)
+  );
+export const SolicitudBuscarDetallesNotificacion = ({ uuid }) =>
+  axios.get(
+    `/web/sistema/buscar-detalles-notificacion/${COOKIE_CON_TOKEN}/${uuid}`
   );

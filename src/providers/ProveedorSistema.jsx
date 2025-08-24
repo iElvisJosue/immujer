@@ -6,6 +6,7 @@ import {
   SolicitudBuscarNotificacionesPorFiltro,
   SolicitudEnviarNotificacionGlobal,
   SolicitudEnviarNotificacionPersonalizada,
+  SolicitudBuscarDetallesNotificacion,
 } from "../api/authSistema";
 import { SistemaContext } from "../context/SistemaContext";
 // IMPORTAMOS LAS AYUDAS
@@ -78,6 +79,14 @@ export const ProveedorSistema = ({ children }) => {
       return error;
     }
   };
+  const BuscarDetallesNotificacion = async (data) => {
+    try {
+      const res = await SolicitudBuscarDetallesNotificacion(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
   return (
     <SistemaContext.Provider
       value={{
@@ -89,6 +98,7 @@ export const ProveedorSistema = ({ children }) => {
         BuscarNotificacionesPorFiltro,
         EnviarNotificacionGlobal,
         EnviarNotificacionPersonalizada,
+        BuscarDetallesNotificacion,
       }}
     >
       {children}
