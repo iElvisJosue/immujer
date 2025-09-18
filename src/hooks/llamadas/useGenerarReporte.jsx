@@ -31,12 +31,15 @@ export default function useGenerarReporte() {
   const ManejarSegundaFecha = (event) => {
     establecerSegundaFecha(event.target.value);
   };
-  const ModalDescargarReporte = (NombreArchivo) => {
+  const ModalDescargarReporte = ({
+    TituloModal = "¡Reporte generado con exito!",
+    MensajeModal = "¿Desea descargar el reporte en este momento? El archivo seguirá disponible en esta sección cuando lo necesite.",
+    NombreArchivo,
+  }) => {
     const URL = `${HOST_ARCHIVOS}/${NombreArchivo}`;
     AlertaDePregunta({
-      Titulo: "¡Reporte generado con exito!",
-      Mensaje:
-        "¿Desea descargar el reporte? El reporte siempre estará disponible en está sección.",
+      Titulo: TituloModal,
+      Mensaje: MensajeModal,
       TextoBotonCancelar: "No",
       TextoBotonConfirmar: "Si, descargar el reporte",
       FuncionParaRealizar: () => {
@@ -83,7 +86,9 @@ export default function useGenerarReporte() {
       } else {
         const NombreArchivo = res.data;
         establecerObtenerReportesNuevamente(!obtenerReportesNuevamente);
-        ModalDescargarReporte(NombreArchivo);
+        ModalDescargarReporte({
+          NombreArchivo,
+        });
       }
     } catch {
       ManejarRespuestasDelServidor({});

@@ -65,7 +65,12 @@ export default function GenerarReporte() {
               infReporte.fecha_creacion.slice(0, 10)
             )} a las ${infReporte.hora_creacion}`}
             FuncionParaRealizar={() =>
-              ModalDescargarReporte(infReporte.nombre_reporte)
+              ModalDescargarReporte({
+                TituloModal: "¿Descargar reporte?",
+                MensajeModal:
+                  "El archivo seguirá disponible en esta sección cuando lo necesite.",
+                NombreArchivo: infReporte.nombre_reporte,
+              })
             }
           />
         ))
