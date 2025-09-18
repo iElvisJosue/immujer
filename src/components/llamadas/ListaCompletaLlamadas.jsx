@@ -26,7 +26,7 @@ export default function ListaCompletaLlamadas({
   const EstablecerLlamadaSeleccionada = (infLlamada) => {
     establecerInfLlamadaSeleccionada(infLlamada);
     establecerVieneDeVistaCompleta(true);
-    establecerSubvistaActual(2);
+    establecerSubvistaActual(3);
   };
 
   return (

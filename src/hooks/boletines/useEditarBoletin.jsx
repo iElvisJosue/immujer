@@ -73,9 +73,8 @@ export default function useEditarBoletin({
         ManejarRespuestasDelServidor({ status, data });
         establecerSubvistaActual(0);
       }
-    } catch (error) {
-      console.error(error);
-      ManejarRespuestasDelServidor();
+    } catch {
+      ManejarRespuestasDelServidor({});
     }
   });
 

@@ -25,7 +25,7 @@ export default function ListaPorFechaLlamadas({
   });
   const EstablecerLlamadaSeleccionada = (infLlamada) => {
     establecerInfLlamadaSeleccionada(infLlamada);
-    establecerSubvistaActual(2);
+    establecerSubvistaActual(3);
     establecerVieneDeVistaCompleta(false);
   };
   const ManejarPrimeraFecha = (event) => {

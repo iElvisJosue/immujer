@@ -8,6 +8,7 @@ import PlatillaMain from "./PlantillaMain";
 import ListaCompletaLlamadas from "../components/llamadas/ListaCompletaLlamadas";
 import ListaPorFechaLlamadas from "../components/llamadas/ListaPorFechaLlamadas";
 import DetallesLlamada from "../components/llamadas/DetallesLlamada";
+import GenerarReporte from "../components/llamadas/GenerarReporte";
 
 export default function Dependencias() {
   const { infUsuario } = useSistema();
@@ -18,7 +19,8 @@ export default function Dependencias() {
   const listaDeComponentes = {
     0: ListaCompletaLlamadas,
     1: ListaPorFechaLlamadas,
-    2: DetallesLlamada,
+    2: GenerarReporte,
+    3: DetallesLlamada,
   };
   // AGREGAMOS AL OBJETO DE PROPS COMPARTIDOS EL ID DEL USUARIO
   PropsCompartidos.idUsuario = infUsuario.id_usuario;

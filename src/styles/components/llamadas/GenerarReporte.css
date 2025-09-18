@@ -1,0 +1,62 @@
+.GenerarReporte {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}
+.GenerarReporte__Botones {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.GenerarReporte__Botones--Fecha {
+  padding: 10px 20px;
+  border-radius: var(--RadiusInputs);
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-color: var(--ColorBlanco);
+  color: var(--ColorNegro);
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+.GenerarReporte__Botones--Boton {
+  padding: 10px;
+  border-radius: var(--RadiusInputs);
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-color: var(--ColorPrincipal);
+  font-weight: bold;
+  border: 2px solid var(--ColorPrincipal);
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.GenerarReporte__Botones--Boton:hover {
+  background-color: transparent;
+}
+.GenerarReporte__Botones--Boton:hover svg {
+  fill: var(--ColorPrincipal);
+}
+@media (max-width: 900px) {
+  .GenerarReporte {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+@media (max-width: 550px) {
+  .GenerarReporte {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 450px) {
+  .GenerarReporte__Botones {
+    flex-direction: column;
+  }
+  .GenerarReporte__Botones--Fecha,
+  .GenerarReporte__Botones--Boton {
+    width: 100%;
+  }
+}

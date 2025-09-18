@@ -22,10 +22,16 @@ export default function useLlamdas() {
       AltImagen: "Lista por fechas de llamadas",
       Texto: "Lista por fechas",
     },
+    {
+      Imagen: "Imagenes/Excel.png",
+      AltImagen: "Reportes",
+      Texto: "Reportes",
+    },
   ];
   const TitulosSubvista = [
     "Lista completa",
     "Lista por fechas",
+    "Generar reporte",
     "Detalles de la llamada",
   ];
   const PropsCompartidos = {
