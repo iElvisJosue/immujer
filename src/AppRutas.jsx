@@ -18,11 +18,13 @@ export const rutasPublicas = [
     element: <IniciarSesion />,
   },
 ];
-export const rutasParaAdministrador = [
+export const rutasParaTodosLosUsuarios = [
   {
-    path: "/Llamadas",
-    element: <Llamadas />,
+    path: "/Perfil",
+    element: <Perfil />,
   },
+];
+export const rutasParaAdministrador = [
   {
     path: "/Dependencias",
     element: <Dependencias />,
@@ -39,8 +41,10 @@ export const rutasParaAdministrador = [
     path: "/Notificaciones",
     element: <Notificaciones />,
   },
+];
+export const rutasParaPolicia = [
   {
-    path: "/Perfil",
-    element: <Perfil />,
+    path: "/Llamadas",
+    element: <Llamadas />,
   },
 ];

@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
+import Cookies from "js-cookie";
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import { useSearchParams } from "react-router-dom";
 // CONTEXTOS A USAR
-import { useSistema } from "../context/SistemaContext";
+import { useSistemaContext } from "../context/SistemaContext";
 // COMPONENTES A USAR
 import Titulo from "../components/global/Titulo";
 import Separador from "../components/global/Separador";
+import Notificaciones from "../components/global/Notificaciones";
 // AYUDAS A USAR
 import { HOST_IMAGENES } from "../helpers/Urls";
 import { LISTA_SVGS } from "../helpers/SVGs";
 import { OpcionesDelMenu } from "../helpers/OpcionesDelMenu";
 import { AlertaDePregunta } from "../helpers/TiposDeAlertas";
 import { TOKEN_DE_ACCESO_SISTEMA } from "../helpers/Constantes";
-
 // ESTILOS A USAR
 import "../styles/components/global/Main.css";
 
@@ -23,7 +24,8 @@ export default function PlatillaMain({
   // 0 -> LLAMADAS
   // 1 -> DEPENDENCIAS
   // 2 -> BOLETINES
-  // 3 -> USUARIOS
+  // 3 -> USUARIOS}
+  // 4 -> NOTIFICACIONES
   VistaActual = 0,
   subvistaActual = 0,
   establecerSubvistaActual,
@@ -32,13 +34,14 @@ export default function PlatillaMain({
   children,
 }) {
   const {
-    establecerObtenerInformacionNuevamente,
-    obtenerInformacionNuevamente,
     infUsuario,
-  } = useSistema();
-  const [verMenu, establecerVerMenu] = useState(false);
+    obtenerInformacionNuevamente,
+    establecerObtenerInformacionNuevamente,
+  } = useSistemaContext();
   const navigate = useNavigate();
   const opcionesRef = useRef(null);
+  const [, setSearchParams] = useSearchParams();
+  const [verMenu, establecerVerMenu] = useState(false);
 
   useEffect(() => {
     const opciones = opcionesRef.current;
@@ -63,25 +66,29 @@ export default function PlatillaMain({
   const ClaseMenu = verMenu ? "Main__Menu Ver" : "Main__Menu";
   return (
     <main className="Main">
+      {/* SECCION DE LAS NOTIFICACIONES */}
+      <Notificaciones idUsuario={infUsuario.id_usuario} />
       <aside className={ClaseMenu}>
         <picture className="Main__Menu--Imagenes">
           <img src="ImmujerLogo.png" alt="Logo Sistema" title="Logo Sistema" />
         </picture>
         <span className="Main__Menu--Opciones">
-          {OpcionesDelMenu.map(({ Tooltip, Svg, BoxSvg, Tamaño }, index) => (
-            <button
-              key={index}
-              className={`Main__Menu--Opciones--Boton ${
-                index === VistaActual ? "Activo" : ""
-              }`}
-              data-tooltip={Tooltip}
-              onClick={() => {
-                navigate(OpcionesDelMenu[index].Url);
-              }}
-            >
-              <LISTA_SVGS SVG={Svg} Box={BoxSvg} Tamaño={Tamaño} />
-            </button>
-          ))}
+          {OpcionesDelMenu[infUsuario.rol].map(
+            ({ Tooltip, Svg, BoxSvg, Url, Tamaño }, index) => (
+              <button
+                key={index}
+                className={`Main__Menu--Opciones--Boton ${
+                  index === VistaActual ? "Activo" : ""
+                }`}
+                data-tooltip={Tooltip}
+                onClick={() => {
+                  navigate(Url);
+                }}
+              >
+                <LISTA_SVGS SVG={Svg} Box={BoxSvg} Tamaño={Tamaño} />
+              </button>
+            )
+          )}
         </span>
         <span className="Main__Menu--Configuracion">
           <button
@@ -130,6 +137,8 @@ export default function PlatillaMain({
                 }`}
                 key={index}
                 onClick={() => {
+                  // LIMPIAMOS CUALQUIER PARAMETRO DE BUSQUEDA
+                  setSearchParams({});
                   establecerSubvistaActual(index);
                 }}
               >

@@ -92,7 +92,7 @@ export default function GenerarPDFInfracciones({ data: Infracciones }) {
               <View key={index} style={EstilosPDF.tableRow}>
                 <View style={EstilosPDF.tableCol}>
                   <Text style={EstilosPDF.tableCell}>
-                    {infLlamada.id_historial_llamada}
+                    {infLlamada.id_llamada}
                   </Text>
                 </View>
                 <View style={EstilosPDF.tableCol}>

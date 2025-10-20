@@ -1,12 +1,12 @@
 import axios from "./axios";
 import { AgregarCookiePeticion } from "../helpers/AgregarCookiePeticion";
 
-export const SolicitudRegistrarNuevaDependencia = (data) =>
-  axios.post("/web/dependencias/registrar-dependencia", data);
-export const SolicitudBuscarDependenciasPorFiltro = (data) =>
+export const SolicitudRegistrar = (data) =>
+  axios.post("/web/dependencias/registrar", data);
+export const SolicitudBuscarPorFiltro = (data) =>
   axios.post(
-    "/web/dependencias/buscar-dependencias-por-filtro",
+    "/web/dependencias/buscar-por-filtro",
     AgregarCookiePeticion(data)
   );
-export const SolicitudEditarUnaDependencia = (data) =>
-  axios.put("/web/dependencias/editar-una-dependencia", data);
+export const SolicitudEditar = (data) =>
+  axios.put("/web/dependencias/editar", data);

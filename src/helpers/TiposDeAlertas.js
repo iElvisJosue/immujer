@@ -102,3 +102,33 @@ export const AlertaInformacionAgente = ({
     },
   });
 };
+export const AlertaEstadoNotificacion = async ({
+  Imagen = "Imagenes/Alerta_Contrasena.png",
+  Titulo = "Titulo Alerta",
+  Mensaje = "Mensaje Alerta",
+  VerBoton = true,
+  TextoBoton = "Entendido",
+  PermitirCerrar = false,
+  FuncionParaRealizar = () => {},
+}) => {
+  const res = await Swal.fire({
+    imageUrl: Imagen,
+    title: Titulo,
+    text: Mensaje,
+    imageWidth: 150,
+    showConfirmButton: VerBoton,
+    confirmButtonText: TextoBoton,
+    allowEscapeKey: PermitirCerrar,
+    allowOutsideClick: PermitirCerrar,
+    customClass: {
+      title: "TituloDeAlerta Azul",
+      htmlContainer: "ContenidoDeAlerta",
+      cancelButton: "BotonDeCancelar",
+      confirmButton: "BotonDeConfirmacion Azul",
+      popup: "AlertaDePregunta",
+    },
+  });
+  if (res.isConfirmed) {
+    FuncionParaRealizar();
+  }
+};

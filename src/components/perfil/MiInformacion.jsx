@@ -4,15 +4,22 @@ import { LISTA_SVGS } from "../../helpers/SVGs";
 // ESTILOS A USAR
 import "../../styles/components/perfil/MiInformacion.css";
 
-export default function MiInformacion({ infUsuario }) {
+export default function MiInformacion({ PropsUsuario }) {
+  const {
+    Foto,
+    Nombre,
+    ApellidoPaterno,
+    ApellidoMaterno,
+    Telefono,
+    Rol,
+    Correo,
+  } = PropsUsuario;
+
   return (
     <section className="MiInformacion">
       <div className="MiInformacion__Imagen">
         <picture className="MiInformacion__Imagen--Contenedor">
-          <img
-            src={`${HOST_IMAGENES}/Perfil/${infUsuario.foto}`}
-            alt="Foto de perfil"
-          />
+          <img src={`${HOST_IMAGENES}/Perfil/${Foto}`} alt="Foto de perfil" />
         </picture>
       </div>
       <div className="MiInformacion__Detalles Completo">
@@ -23,28 +30,22 @@ export default function MiInformacion({ infUsuario }) {
           Tamaño="20"
         />
         <b>Nombre</b>
-        <p>
-          {infUsuario.nombre +
-            " " +
-            infUsuario.apellido_paterno +
-            " " +
-            infUsuario.apellido_materno || "-"}
-        </p>
+        <p>{`${Nombre} ${ApellidoPaterno} ${ApellidoMaterno || "-"}`}</p>
       </div>
       <div className="MiInformacion__Detalles">
         <LISTA_SVGS SVG="TELEFONO" Clase="SVG Principal" />
         <b>Teléfono</b>
-        <p>{infUsuario.telefono || "-"}</p>
+        <p>{Telefono || "-"}</p>
       </div>
       <div className="MiInformacion__Detalles">
         <LISTA_SVGS SVG="PERMISOS" Clase="SVG Principal" />
         <b>Permisos</b>
-        <p>{infUsuario.rol || "-"}</p>
+        <p>{Rol || "-"}</p>
       </div>
       <div className="MiInformacion__Detalles Completo">
         <LISTA_SVGS SVG="CORREO" Clase="SVG Principal" />
         <b>Correo</b>
-        <p>{infUsuario.correo || "-"}</p>
+        <p>{Correo || "-"}</p>
       </div>
     </section>
   );

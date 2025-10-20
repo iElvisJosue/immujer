@@ -1,42 +1,51 @@
 /* eslint-disable react/prop-types */
-import {
-  SolicitudRegistrarNuevaDependencia,
-  SolicitudBuscarDependenciasPorFiltro,
-  SolicitudEditarUnaDependencia,
-} from "../api/authDependencias";
+// IMPORTAMOS LAS SOLICITUDES
+import * as PvDependencias from "../api/authDependencias";
+// IMPORTAMOS EL CONTEXTO DEL PROVIDER
 import { DependenciasContext } from "../context/DependenciasContext";
+// IMPORTAMOS LAS AYUDA
+import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
 
 export const ProveedorDependencias = ({ children }) => {
-  const RegistrarNuevaDependencia = async (data) => {
+  const Registrar = async (data) => {
     try {
-      const res = await SolicitudRegistrarNuevaDependencia(data);
-      return res;
+      const res = await PvDependencias.SolicitudRegistrar(data);
+      ManejarRespuestasDelServidor({ status: res.status, data: res.data });
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
-  const BuscarDependenciasPorFiltro = async (data) => {
+  const BuscarPorFiltro = async (data) => {
     try {
-      const res = await SolicitudBuscarDependenciasPorFiltro(data);
-      return res;
+      const res = await PvDependencias.SolicitudBuscarPorFiltro(data);
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
-  const EditarUnaDependencia = async (data) => {
+  const Editar = async (data) => {
     try {
-      const res = await SolicitudEditarUnaDependencia(data);
-      return res;
+      const res = await PvDependencias.SolicitudEditar(data);
+      ManejarRespuestasDelServidor({ status: res.status, data: res.data });
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
+
   return (
     <DependenciasContext.Provider
       value={{
-        RegistrarNuevaDependencia,
-        BuscarDependenciasPorFiltro,
-        EditarUnaDependencia,
+        Registrar,
+        BuscarPorFiltro,
+        Editar,
       }}
     >
       {children}

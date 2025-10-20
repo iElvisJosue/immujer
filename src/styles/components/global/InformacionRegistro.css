@@ -60,8 +60,33 @@
   height: 100%;
   object-fit: cover;
 }
-.InformacionRegistro__Header--ImagenTitulo p {
+.InformacionRegistro__Header--ImagenTitulo--Titulo {
   font-size: clamp(12px, 4vw, 14px);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado {
+  padding: 2.5px 5px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Pendiente {
+  background-color: var(--ColorFondoAzul);
+  color: var(--ColorAzul);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Inválida {
+  background-color: var(--ColorFondoRojo);
+  color: var(--ColorRojoOscuro);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Atendida {
+  background-color: var(--ColorFondoVerde);
+  color: var(--ColorVerde);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Recomendado {
+  background-color: var(--ColorFondoNaranja);
+  color: var(--ColorNaranja);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Rol {
+  background-color: var(--ColorBg);
+  color: var(--ColorPrincipal);
 }
 .InformacionRegistro__Header--ID {
   padding: 4px 8px;
@@ -84,7 +109,7 @@
 }
 .InformacionRegistro__Descripcion {
   margin-top: 10px;
-  font-size: clamp(14px, 4vw, 20px);
+  font-size: clamp(14px, 4vw, 18px);
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2; /* Número de líneas permitidas */

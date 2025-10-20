@@ -1,0 +1,27 @@
+.Comentarios {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Comentarios--Comentario {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--RadiusInputs);
+  background-color: var(--ColorBlanco);
+  color: var(--ColorGrisOscuro);
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.Comentarios--Comentario b {
+  font-size: clamp(12px, 2vw, 14px);
+  color: var(--ColorPrincipal);
+
+  display: flex;
+  justify-content: space-between;
+}
+.Comentarios--Comentario p {
+  font-size: clamp(10px, 2vw, 12px);
+}

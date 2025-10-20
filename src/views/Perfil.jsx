@@ -1,45 +1,19 @@
-// LIBRERÍAS A USAR
-import { useState } from "react";
-// CONTEXTOS A USAR
-import { useSistema } from "../context/SistemaContext";
+// HOOKS A USAR
+import usePerfil from "../hooks/perfil/usePerfil";
 // PLANTILLA A USAR
 import PlatillaMain from "./PlantillaMain";
-// COMPONENTES A USAR
-import MiInformacion from "../components/perfil/MiInformacion";
-import ActualizarInformacion from "../components/perfil/ActualizarInformacion";
 
 export default function Perfil() {
-  const [subvistaActual, establecerSubvistaActual] = useState(0);
+  const PropsPerfil = usePerfil();
   const {
-    infUsuario,
-    obtenerInformacionNuevamente,
-    establecerObtenerInformacionNuevamente,
-  } = useSistema();
-  const OpcionesDeNavegacion = [
-    {
-      Imagen: "Imagenes/Mi_informacion.png",
-      AltImagen: "Mi información",
-      Texto: "Mi información",
+    PropsVista: {
+      subvistaActual,
+      establecerSubvistaActual,
+      TituloSubvista,
+      OpcionesDeNavegacion,
+      ComponenteParaRenderizar,
     },
-    {
-      Imagen: "Imagenes/Alerta_Actualizacion.png",
-      AltImagen: "Actualizar información",
-      Texto: "Actualizar información",
-    },
-  ];
-  const TitulosSubvista = ["Mi información", "Actualizar mi información"];
-  const PropsCompartidos = {
-    infUsuario,
-    obtenerInformacionNuevamente,
-    establecerObtenerInformacionNuevamente,
-    subvistaActual,
-    establecerSubvistaActual,
-  };
-  const listaDeComponentes = {
-    0: MiInformacion,
-    1: ActualizarInformacion,
-  };
-  const ComponenteParaRenderizar = listaDeComponentes[subvistaActual];
+  } = PropsPerfil;
 
   return (
     <PlatillaMain
@@ -51,9 +25,9 @@ export default function Perfil() {
       subvistaActual={subvistaActual}
       establecerSubvistaActual={establecerSubvistaActual}
       OpcionesDeNavegacion={OpcionesDeNavegacion}
-      TituloSubvista={TitulosSubvista[subvistaActual]}
+      TituloSubvista={TituloSubvista}
     >
-      <ComponenteParaRenderizar {...PropsCompartidos} />
+      <ComponenteParaRenderizar {...PropsPerfil} />
     </PlatillaMain>
   );
 }

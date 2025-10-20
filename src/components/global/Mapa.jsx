@@ -13,7 +13,7 @@ export default function MapPicker({
   iconoPing = "Imagenes/PinCasa.png",
   textoPin = "Ubicación seleccionada:",
   ubicacion,
-  establecerUbicacion,
+  establecerUbicacion = () => {},
   center = [16.85416, -99.85405],
   zoom = 13,
 }) {

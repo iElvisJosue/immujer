@@ -43,6 +43,14 @@
   outline: none;
   transition: border-color 0.3s;
 }
+.ContenedorInput__MaterialDesign--InputText.TextArea {
+  width: 100%;
+  resize: vertical;
+  min-height: 100px;
+  height: 100px;
+  max-height: 250px;
+  padding: 10px;
+}
 .ContenedorInput__MaterialDesign--Label {
   position: absolute;
   top: 50%;

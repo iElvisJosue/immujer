@@ -1,42 +1,51 @@
 /* eslint-disable react/prop-types */
-import {
-  SolicitudRegistrarNuevoBoletin,
-  SolicitudBuscarBoletinesPorFiltro,
-  SolicitudEditarUnBoletin,
-} from "../api/authBoletines";
+// IMPORTAMOS LAS SOLICITUDES
+import * as PvBoletines from "../api/authBoletines";
+// IMPORTAMOS EL CONTEXTO DEL PROVIDER
 import { BoletinesContext } from "../context/BoletinesContext";
+// IMPORTAMOS LAS AYUDA
+import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
 
 export const ProveedorBoletines = ({ children }) => {
-  const RegistrarNuevoBoletin = async (data) => {
+  const Registrar = async (data) => {
     try {
-      const res = await SolicitudRegistrarNuevoBoletin(data);
-      return res;
+      const res = await PvBoletines.SolicitudRegistrar(data);
+      ManejarRespuestasDelServidor({ status: res.status, data: res.data });
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
-  const BuscarBoletinesPorFiltro = async (data) => {
+  const BuscarPorFiltro = async (data) => {
     try {
-      const res = await SolicitudBuscarBoletinesPorFiltro(data);
-      return res;
+      const res = await PvBoletines.SolicitudBuscarPorFiltro(data);
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
-  const EditarUnBoletin = async (data) => {
+  const Editar = async (data) => {
     try {
-      const res = await SolicitudEditarUnBoletin(data);
-      return res;
+      const res = await PvBoletines.SolicitudEditar(data);
+      ManejarRespuestasDelServidor({ status: res.status, data: res.data });
+      return { exito: true, data: res.data };
     } catch (error) {
-      return error;
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
     }
   };
+
   return (
     <BoletinesContext.Provider
       value={{
-        RegistrarNuevoBoletin,
-        BuscarBoletinesPorFiltro,
-        EditarUnBoletin,
+        Registrar,
+        BuscarPorFiltro,
+        Editar,
       }}
     >
       {children}

@@ -1,0 +1,106 @@
+.ModalAgregarComentario {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100dvh; /* asegura cubrir siempre toda la pantalla */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* scroll cuando el contenido es grande */
+  padding: 10px;
+  z-index: 9999;
+}
+
+.ModalAgregarComentario__Contenido {
+  position: relative;
+  background-color: var(--ColorSecundario);
+  padding: 10px;
+  border-radius: 15px;
+  width: 500px;
+  animation: ModalAgregarComentario 0.2s ease-in-out forwards;
+
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+@keyframes ModalAgregarComentario {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.ModalAgregarComentario__Contenido--CerrarModal {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -15px;
+  right: -15px;
+  border-radius: 50%;
+  border: 2px solid var(--ColorRojoOscuro);
+  background-color: var(--ColorRojoOscuro);
+  color: var(--ColorBlanco);
+  font-size: 15px;
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ModalAgregarComentario__Contenido--CerrarModal:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.ModalAgregarComentario__Contenido--ImagenTitulo {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ModalAgregarComentario__Contenido--ImagenTitulo h1 {
+  color: var(--ColorPrincipal);
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.ModalAgregarComentario__Contenido--ImagenTitulo img {
+  width: clamp(70px, 10vw, 125px);
+  height: clamp(70px, 10vw, 125px);
+  margin: 0 auto;
+}
+.ModalAgregarComentario__Contenido--Boton {
+  grid-column: 1 / -1;
+  text-align: center;
+  height: 50px;
+  background-color: var(--ColorVerde);
+  border: 2px solid var(--ColorVerde);
+  border-radius: 10px;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+.ModalAgregarComentario__Contenido--Boton:hover {
+  letter-spacing: 0.2px;
+}
+@media (width <= 550px) {
+  .ModalAgregarComentario__Contenido {
+    width: 100%;
+  }
+  .ModalAgregarComentario__Contenido--CerrarModal {
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 0 13px 0 13px;
+  }
+}

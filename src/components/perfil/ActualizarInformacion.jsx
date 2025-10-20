@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
+// HOOKS A USAR
+import useActualizarMiInformacion from "../../hooks/perfil/Actualizar/useActualizarMiInformacion";
 // COMPONENTES A USAR
 import FooterBotones from "../global/FooterBotones";
-// HOOKS A USAR
-import useActualizarMiInformacion from "../../hooks/perfil/useActualizarMiInformacion";
 // AYUDAS A USAR
 import { LISTA_SVGS } from "../../helpers/SVGs";
 import { MENSAJES_DE_VALIDACION } from "../../helpers/MensajesValidaciones";
@@ -11,22 +11,14 @@ import { REGEX_SOLO_NUMEROS, REGEX_CORREO } from "../../helpers/Regex";
 import "../../styles/components/perfil/ActualizarMiInformacion.css";
 
 export default function ActualizarMiInformacion({
-  infUsuario,
-  establecerSubvistaActual,
-  obtenerInformacionNuevamente,
-  establecerObtenerInformacionNuevamente,
+  PropsVista: { establecerSubvistaActual },
+  PropsUsuario,
 }) {
-  const {
-    register,
-    CampoRequerido,
-    PeticionActualizarMiInformacion,
-    RegresarVistaAnterior,
-  } = useActualizarMiInformacion({
-    infUsuario,
-    establecerSubvistaActual,
-    obtenerInformacionNuevamente,
-    establecerObtenerInformacionNuevamente,
-  });
+  const { register, CampoRequerido, PeticionActualizarMiInformacion } =
+    useActualizarMiInformacion({
+      PropsUsuario,
+      establecerSubvistaActual,
+    });
 
   return (
     <form
@@ -181,7 +173,7 @@ export default function ActualizarMiInformacion({
       </span>
       <FooterBotones
         TextoBotonNegativo="Regresar"
-        FuncionNegativa={RegresarVistaAnterior}
+        FuncionNegativa={() => establecerSubvistaActual(0)}
         TextoBotonPositivo="Actualizar"
       />
     </form>

@@ -4,19 +4,16 @@ import {
   AgregarCookiePeticion,
 } from "../helpers/AgregarCookiePeticion";
 
-export const SolicitudIniciarSesionUsuario = (data) =>
+export const SolicitudIniciarSesion = (data) =>
   axios.post("/web/usuarios/iniciar-sesion", data);
 export const SolicitudActualizarMiInformacion = (data) =>
   axios.put(
     "/web/usuarios/actualizar-mi-informacion",
     AgregarCookiePeticion(data)
   );
-export const SolicitudRegistrarNuevoUsuario = (data) =>
-  axios.post("/web/usuarios/registrar-usuario", AgregarCookiePeticion(data));
-export const SolicitudBuscarUsuariosPorFiltro = (data) =>
-  axios.post(
-    "/web/usuarios/buscar-usuarios-por-filtro",
-    AgregarCookiePeticion(data)
-  );
-export const SolicitudEditarUnUsuario = (data) =>
-  axios.put("/web/usuarios/editar-un-usuario", data);
+export const SolicitudRegistrar = (data) =>
+  axios.post("/web/usuarios/registrar", AgregarCookiePeticion(data));
+export const SolicitudBuscarPorFiltro = (data) =>
+  axios.post("/web/usuarios/buscar-por-filtro", AgregarCookiePeticion(data));
+export const SolicitudEditar = (data) =>
+  axios.put("/web/usuarios/editar", data);

@@ -1,70 +1,70 @@
 // LIBRERÍAS A USAR
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
 // CONTEXTOS A USAR
-import { useUsuarios } from "../../context/UsuariosContext";
+import { useUsuariosContext } from "../../context/UsuariosContext";
 // AYUDAS A USAR
 import {
   AlertaDePregunta,
   AlertaInformativa,
   AlertaRealizandoPeticion,
 } from "../../helpers/TiposDeAlertas";
-import { ManejarRespuestasDelServidor } from "../../helpers/ManejarRespuestasDelServidor";
-import { TOKEN_DE_ACCESO_SISTEMA } from "../../helpers/Constantes";
+import { ReproducirAudio } from "../../helpers/Audios";
 import { MOSTRAR, OCULTAR } from "../../helpers/MagicStrings";
+import { TOKEN_DE_ACCESO_SISTEMA } from "../../helpers/Constantes";
+
 export default function useIniciarSesion({ handleSubmit }) {
+  const { IniciarSesion } = useUsuariosContext();
   const [mostrarContraseña, establecerMostrarContraseña] = useState(false);
   const [iconoMostrarOcultar, establecerIconoMostrarOcultar] =
     useState(MOSTRAR);
-  const navigate = useNavigate();
-  const { IniciarSesionUsuario } = useUsuarios();
+
   useEffect(() => {
     // SI NO EXISTE LA COOKIE DE INTENTOS DE INICIAR SESIÓN, LA CREAMOS
     VerificarCookieDeintentos();
+    // MOSTRAMOS UNA ALERTA DE SESION ACTIVA SOLO SI EL USUARIO TIENE
+    // UNA COOKIE DE ACCESO
     if (Cookies.get()[TOKEN_DE_ACCESO_SISTEMA]) {
       AlertaDePregunta({
         Titulo: "¡Tienes una sesión activa!",
         Mensaje: "¿Quieres ir al menú principal?",
         TextoBotonCancelar: "No",
         TextoBotonConfirmar: "Si, ir al menú principal",
-        FuncionParaRealizar: () => navigate("/Llamadas"),
+        FuncionParaRealizar: () => {
+          window.location.href = "/Llamadas";
+        },
       });
     }
   }, []);
 
   const PeticionIniciarSesion = handleSubmit(async (data) => {
+    // AUDIO FANTASMA PARA HABILITAR EL SONIDO EN EL SISTEMA
+    ReproducirAudio({ Volumen: 0 });
     // SI NO EXISTE LA COOKIE DE INTENTOS DE INICIAR SESIÓN, LA CREAMOS
     VerificarCookieDeintentos();
-    // SI LA CANTIDAD DE INTENTOS ES IGUAL O MENOR A 0, MOSTRAMOS UNA ALERTA
-    if (ValidarCantidadDeIntentos()) {
-      return AlertaInformativa({
-        Titulo: "¡Intentos agotados!",
-        Mensaje:
-          "Has agotado tus 5 intentos de iniciar sesión, por favor vuelve a intentarlo en 15 minutos.",
-        Imagen: "Imagenes/Alerta_SinIntentos.png",
-        ColorAlerta: "Naranja",
-      });
-    }
+    // SI LA CANTIDAD DE INTENTOS ES IGUAL O MENOR A 0, NO HACEMOS NADA
+    if (!TieneIntentosDeIniciarSesion()) return;
     // MOSTRAMOS LA ALERTA DE REALIZANDO PETICIÓN
     // LA ALERTA SE CERRARA AUTOMATICAMENTE AL TERMINAR LA PETICIÓN
     AlertaRealizandoPeticion();
-    try {
-      const res = await IniciarSesionUsuario(data);
-      if (res.response) {
-        const { status, data } = res.response;
-        ManejarRespuestasDelServidor({ status, data });
-        RestarIntentosDeIniciarSesion();
-      } else {
-        // REINICIAMOS LA CANTIDAD DE INTENTOS DE INICIAR SESIÓN
-        EstablecerCookieDeIntentos();
-        window.location.href = "/Llamadas";
-      }
-    } catch (error) {
-      const { status, data } = error.response;
-      ManejarRespuestasDelServidor({ status, data });
+    const res = await IniciarSesion(data);
+    if (res.exito) {
+      // CREAMOS UNA CLAVE EN LS PARA SABER SI ES LA PRIMERA
+      // VEZ QUE INGRESA AL SISTEMA, PERO SOLO SI NO EXISTE
+      CrearItemPrimeraVez();
+      // REINICIAMOS LA CANTIDAD DE INTENTOS DE INICIAR SESIÓN
+      EstablecerCookieDeIntentos();
+      window.location.href = "/Llamadas";
+    } else {
+      RestarIntentosDeIniciarSesion();
     }
   });
+  const CrearItemPrimeraVez = () => {
+    const ExistePrimeraVez = localStorage.getItem("PrimeraVez");
+    if (!ExistePrimeraVez) {
+      localStorage.setItem("PrimeraVez", true);
+    }
+  };
   const ManejarMostrarContraseña = () => {
     const InputContraseña = document.getElementById("ContrasenaUsuario");
     establecerMostrarContraseña(!mostrarContraseña);
@@ -90,9 +90,18 @@ export default function useIniciarSesion({ handleSubmit }) {
       expires: 15 / 1440,
     });
   };
-  const ValidarCantidadDeIntentos = () => {
+  const TieneIntentosDeIniciarSesion = () => {
     const IntentosDeIniciarSesion = Cookies.get("IntentosDeIniciarSesion");
-    return IntentosDeIniciarSesion <= 0;
+    if (IntentosDeIniciarSesion <= 0) {
+      AlertaInformativa({
+        Titulo: "¡Intentos agotados!",
+        Mensaje:
+          "Has agotado tus 5 intentos de iniciar sesión, por favor vuelve a intentarlo en 15 minutos.",
+        Imagen: "Imagenes/Alerta_SinIntentos.png",
+        ColorAlerta: "Naranja",
+      });
+    }
+    return IntentosDeIniciarSesion > 0;
   };
 
   return {

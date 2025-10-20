@@ -12,8 +12,6 @@ export default function OpcionesDeSwitches({ Opciones }) {
             Activo = false,
             FuncionDeEstablecimiento = () => {},
             ValorDeEstablecimiento,
-            IconoDesactivado = "close",
-            IconoActivado = "checkmark-done",
             AlineadoDelSwitch = "",
           },
           index
@@ -34,13 +32,7 @@ export default function OpcionesDeSwitches({ Opciones }) {
                 onClick={() =>
                   FuncionDeEstablecimiento(!ValorDeEstablecimiento)
                 }
-              >
-                <ion-icon
-                  name={
-                    ValorDeEstablecimiento ? IconoActivado : IconoDesactivado
-                  }
-                ></ion-icon>
-              </button>
+              ></button>
             </span>
           </div>
         )

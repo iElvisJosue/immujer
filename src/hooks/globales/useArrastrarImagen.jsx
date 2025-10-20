@@ -70,11 +70,11 @@ export default function useArrastrarImagen({
     : urlImagenActual;
 
   return {
+    isDragActive,
     getRootProps,
     getInputProps,
-    isDragActive,
+    ImagenPreview,
     imagenSeleccionada,
     establecerImagenSeleccionada,
-    ImagenPreview,
   };
 }
