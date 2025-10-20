@@ -18,6 +18,10 @@ export const SolicitudObtenerComentarios = ({ idLlamada }) =>
   );
 export const SolicitudAgregarComentario = (data) =>
   axios.post("/web/llamadas/agregar-comentario", AgregarCookiePeticion(data));
+export const SolicitudObtenerUbicaciones = ({ idLlamada }) =>
+  axios.get(
+    `/web/llamadas/obtener-ubicaciones/${COOKIE_CON_TOKEN}/${idLlamada}`
+  );
 export const SolicitudObtenerReportes = () =>
   axios.get(`/web/llamadas/obtener-reportes/${COOKIE_CON_TOKEN}`);
 export const SolicitudGenerarReporte = (data) =>

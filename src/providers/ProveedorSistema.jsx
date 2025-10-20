@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // IMPORTAMOS LAS SOLICITUDES
 import * as PvSistema from "../api/authSistema.js";
 // IMPORTAMOS EL CONTEXTO
@@ -38,19 +38,23 @@ export const ProveedorSistema = ({ children }) => {
   const [permisosNotificaciones, establecerPermisosNotificaciones] = useState(
     Notification.permission
   );
-  // ESTADO PARA CONTROLAR LAS NOTIFICACIONES EN TIEMPO REAL DEL USUARIO
-  // CADA QUE CAMBIE, VOLVEREMOS A OBTENER LAS NOTIFICACIONES SIN VER
-  // QUE TIENE EL USUARIO
-  const [recargarNotificaciones, establecerRecargarNotificaciones] =
-    useState(0);
-  // ESTADO PARA CONTROLAR LAS LLAMADAS EN TIEMPO REAL DEL USUARIO
-  // CADA QUE CAMBIE, VOLVEREMOS A OBTENER LAS NOTIFICACIONES SIN VER
-  // QUE TIENE EL USUARIO
-  const [recargarLlamadas, establecerRecargarLlamadas] = useState(0);
   // ESTADO PARA CONTROLAR EL REINTENTO DE SOLICTUD DE NOTIFICACIONES
   // EN EL SISTEMA POR SI LOS RECHAZA. (TIENE 3 INTENTOS POR DEFECTO)
   const [solicitarNotificaciones, establecerSolicitarNotificaciones] =
     useState(0);
+  // ESTADOS PARA CONTROLAR INFORMACIÓN EN TIEMPO REAL DEL USUARIO
+  // POR AHORA SOLO NOTIFICACIONES, LLAMADAS Y COORDENADAS DE UNA LLAMADA
+  const [recargarLlamadas, establecerRecargarLlamadas] = useState(0);
+  const [recargarNotificaciones, establecerRecargarNotificaciones] =
+    useState(0);
+  // REFERENCIA QUE SERVIRA PARA SABER SI DEBEMOS ACTUALIZAR LAS
+  // COORDENADAS DE LA LLAMADA QUE ESTAMOS VIENDO ACTUALMENTE
+  // EJEMPLO -> SI ESTAMOS VIENDO LA LLAMADA 1 PERO ESTAMOS
+  // RECIBIENDO ACTUALIZACIONES DE LA LLAMADA 2, NO DEBEMOS
+  // ACTUALIZAR LAS COORDENADAS DE LA LLAMADA 1, ASI EVITAMOS
+  // QUE SE REALICEN PETICIONES COMPLETAMENTE INNECESARIAS
+  const idLlamadaActualRef = useRef(null);
+  const [recargarCoordenadas, establecerRecargarCoordenadas] = useState(0);
 
   const QuitarInformacionAlmacenada = () => {
     establecerInfUsuario(null);
@@ -61,6 +65,9 @@ export const ProveedorSistema = ({ children }) => {
     establecerInfUsuario(info);
     establecerTieneCookie(true);
     establecerCargandoInformacion(false);
+  };
+  const EstablecerIdLlamadaActual = (idLlamada) => {
+    idLlamadaActualRef.current = idLlamada;
   };
   // EFECTO PARA VALIDAR EL TOKEN (ESTA EN LA COOKIE)
   // SE VUELVE A ACTIVAR CUANDO SE RECARGA LA PÁGINA
@@ -243,7 +250,6 @@ export const ProveedorSistema = ({ children }) => {
         TOKEN_ACCESO,
       });
       EstablecerInformacionObtenida(res.data);
-      // establecerReintentarConexion(!reintentarConexion);
     } catch (err) {
       // ELIMINAMOS LA COOKIE
       Cookies.remove(TOKEN_DE_ACCESO_SISTEMA);
@@ -275,6 +281,14 @@ export const ProveedorSistema = ({ children }) => {
         },
       });
     }
+    if (tipoNotificacion === "ubicacion-tiempo-real") {
+      // SI LA LLAMADA QUE TENEMOS ABIERTA ACTUALMENTE ES LA QUE ESTA
+      // ENVIANDO SU UBICACIÓN EN TIEMPO REAL, ACTUALIZAMOS SUS COORDENADAS
+      // EN LA VISTA DE "DETALLES LLAMADA"
+      if (idLlamada === idLlamadaActualRef.current) {
+        establecerRecargarCoordenadas((prev) => prev + 1);
+      }
+    }
   };
 
   return (
@@ -285,10 +299,13 @@ export const ProveedorSistema = ({ children }) => {
         tieneCookie,
         recargarLlamadas,
         cargandoInformacion,
+        recargarCoordenadas,
         recargarNotificaciones,
         obtenerInformacionNuevamente,
         establecerRecargarNotificaciones,
         establecerObtenerInformacionNuevamente,
+        // ESTOS SON FUNCIONES
+        EstablecerIdLlamadaActual,
       }}
     >
       {children}

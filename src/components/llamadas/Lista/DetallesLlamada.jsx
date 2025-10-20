@@ -7,6 +7,7 @@ import Cargando from "../../global/Cargando";
 import Separador from "../../global/Separador";
 import ListaComentarios from "./ListaComentarios";
 import ModalEstadoLlamada from "./ModalEstadoLlamada";
+import SinResultados from "../../global/SinResultados";
 import ModalAgregarComentario from "./ModalAgregarComentario";
 import ModalEnviarNotificacionPersonalizada from "./ModalEnviarNotificacionPersonalizada";
 //AYUDAS A USAR
@@ -15,7 +16,6 @@ import { ESTADOS_LLAMADA } from "../../../helpers/Constantes";
 import { FormatearFechaALetra } from "../../../helpers/FuncionesGenerales";
 // ESTILOS A USAR
 import "../../../styles/components/llamadas/Lista/DetallesLlamada.css";
-import SinResultados from "../../global/SinResultados";
 
 export default function DetallesLlamada({
   PropsVista: { vieneDeVistaCompleta, establecerSubvistaActual },
@@ -26,6 +26,8 @@ export default function DetallesLlamada({
     detallesLlamada,
     cargandoDetalles,
     comentariosLlamada,
+    ubicacionesLlamada,
+    cargandoUbicaciones,
     cargandoComentarios,
     verModalNotificacion,
     verModalEstadoLlamada,
@@ -63,8 +65,6 @@ export default function DetallesLlamada({
     contacto_emergencia,
     telefono_emergencia,
     fase,
-    latitud,
-    longitud,
   } = detallesLlamada;
 
   return (
@@ -299,15 +299,23 @@ export default function DetallesLlamada({
           Ubicación de la llamada
         </p>
         {/* UBICACION DE LA LLAMADA */}
-        <Mapa
-          iconoPing="Imagenes/PinLlamada.png"
-          textoPin="Ubicación de la llamada:"
-          ubicacion={{
-            lat: latitud,
-            lng: longitud,
-          }}
-          center={[latitud, longitud]}
-        />
+        {cargandoUbicaciones ? (
+          <Cargando Texto="Cargando..." />
+        ) : (
+          <Mapa
+            iconoPing="Imagenes/PinLlamada.png"
+            textoPin="Ubicación de la llamada:"
+            ubicacion={{
+              lat: ubicacionesLlamada.latitud_final,
+              lng: ubicacionesLlamada.longitud_final,
+            }}
+            center={[
+              ubicacionesLlamada.latitud_final,
+              ubicacionesLlamada.longitud_final,
+            ]}
+          />
+        )}
+
         {cargandoComentarios ? (
           <Cargando Texto="Cargando..." />
         ) : (

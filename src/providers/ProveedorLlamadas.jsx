@@ -69,6 +69,16 @@ export const ProveedorLlamadas = ({ children }) => {
       return { exito: false, data };
     }
   };
+  const ObtenerUbicaciones = async (data) => {
+    try {
+      const res = await PvLlamadas.SolicitudObtenerUbicaciones(data);
+      return { exito: true, data: res.data };
+    } catch (error) {
+      const { data, status } = error.response || {};
+      ManejarRespuestasDelServidor({ data, status });
+      return { exito: false, data };
+    }
+  };
   const ObtenerReportes = async (data) => {
     try {
       const res = await PvLlamadas.SolicitudObtenerReportes(data);
@@ -97,6 +107,7 @@ export const ProveedorLlamadas = ({ children }) => {
         ActualizarEstado,
         AgregarComentario,
         ObtenerComentarios,
+        ObtenerUbicaciones,
       }}
     >
       {children}

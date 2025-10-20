@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // CONTEXTO A USAR
 import { useLlamadasContext } from "../../../context/LlamadasContext";
+import { useSistemaContext } from "../../../context/SistemaContext";
 // AYUDAS A USAR
 import { AlertaInformativa } from "../../../helpers/TiposDeAlertas";
 import { ESTADOS_LLAMADA } from "../../../helpers/Constantes";
@@ -12,19 +13,24 @@ export default function useDetallesLlamada({
   idLlamadaSeleccionada,
   establecerSubvistaActual,
 }) {
-  const { ObtenerDetalles, ObtenerComentarios } = useLlamadasContext();
+  const { recargarCoordenadas, EstablecerIdLlamadaActual } =
+    useSistemaContext();
+  const { ObtenerDetalles, ObtenerComentarios, ObtenerUbicaciones } =
+    useLlamadasContext();
   // OBTENEMOS EL ID DE LA LLAMADA, SI VIENE DE LA NOTIFICACION
   // ENTONCES LO OBTENEMOS DE LOS PARAMETROS DE LA URL, DE LO CONTRARIO
   // LO OBTENEMOS DEL LISTADO
   const [searchParams, setSearchParams] = useSearchParams();
   const idLlamada = Number(searchParams.get("Id")) || idLlamadaSeleccionada;
   // ESTADOS PARA CONTROLAR LA INFORMACION DE LA LLAMADA
-  // (DETALLES COMPLETOS Y LOS COMENTARIOS QUE TIENE)
+  // (DETALLES GENERALES, COORDENADAS, LOS COMENTARIOS QUE TIENE)
   const [detallesLlamada, establecerDetallesLlamada] = useState(null);
   const [cargandoDetalles, establecerCargandoDetalles] = useState(true);
   const [comentariosLlamada, establecerComentariosLlamada] = useState([]);
   const [cargandoComentarios, establecerCargandoComentarios] = useState(true);
   const [recargarComentarios, establecerRecargarComentarios] = useState(0);
+  const [ubicacionesLlamada, establecerUbicacionesLlamada] = useState([]);
+  const [cargandoUbicaciones, establecerCargandoUbicaciones] = useState(true);
   // ESTADOS PARA CONTROLAR LA VISIBILIDAD DE LOS MODALES
   const [verModalNotificacion, establecerVerModalNotificacion] =
     useState(false);
@@ -32,6 +38,16 @@ export default function useDetallesLlamada({
     useState(false);
   const [verModalEstadoLlamada, establecerVerModalEstadoLlamada] =
     useState(false);
+
+  // EFECTO PARA GUARDAR EL ID DE LA LLAMADA ACTUAL Y ASI
+  // VALIDAR SI DEBEMOS ACTUALIZAR SUS COORDENADAS EN TIEMPO REAL
+  // DATO -> AL DESMONTAR EL COMPONENTE QUITAMOS EL ID DE LA LLAMADA
+  useEffect(() => {
+    EstablecerIdLlamadaActual(idLlamada);
+    return () => {
+      EstablecerIdLlamadaActual(null);
+    };
+  }, [idLlamada]);
 
   // EFECTO PARA OBTENER LOS DETALLES DE LA LLAMADA
   useEffect(() => {
@@ -67,6 +83,18 @@ export default function useDetallesLlamada({
     }
     ObtenerComentariosLlamada();
   }, [idLlamada, recargarComentarios]);
+  // EFECTO PARA VOLVER A OBTENER LAS CC DE LA LLAMADA
+  useEffect(() => {
+    async function ObtenerCoordenadas() {
+      try {
+        const res = await ObtenerUbicaciones({ idLlamada });
+        if (res.exito) establecerUbicacionesLlamada(res.data[0]);
+      } finally {
+        establecerCargandoUbicaciones(false);
+      }
+    }
+    ObtenerCoordenadas();
+  }, [recargarCoordenadas]);
 
   function MostrarAlertaFaseCierre(infLlamada) {
     const { fase } = infLlamada;
@@ -97,6 +125,8 @@ export default function useDetallesLlamada({
     detallesLlamada,
     cargandoDetalles,
     comentariosLlamada,
+    ubicacionesLlamada,
+    cargandoUbicaciones,
     cargandoComentarios,
     verModalNotificacion,
     verModalEstadoLlamada,
