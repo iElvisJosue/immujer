@@ -58,7 +58,7 @@ export default function useDetallesLlamada({
         establecerCargandoDetalles(true);
         const res = await ObtenerDetalles({ idLlamada });
         if (res.exito) {
-          establecerDetallesLlamada(res.data[0]);
+          establecerDetallesLlamada({ ...res.data[0], id_llamada: idLlamada });
           // SI LA LLAMADA YA ESTA EN FASE DE CIERRE
           // (ATENDIDA, INVALIDA) ENTONCES MOSTRAMOS UNA ALERTA
           if (res.data[0].fase !== ESTADOS_LLAMADA.Pendiente) {
