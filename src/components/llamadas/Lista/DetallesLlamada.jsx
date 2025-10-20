@@ -16,6 +16,7 @@ import { ESTADOS_LLAMADA } from "../../../helpers/Constantes";
 import { FormatearFechaALetra } from "../../../helpers/FuncionesGenerales";
 // ESTILOS A USAR
 import "../../../styles/components/llamadas/Lista/DetallesLlamada.css";
+import OpcionesDeSwitches from "../../global/OpcionesDeSwitches";
 
 export default function DetallesLlamada({
   PropsVista: { vieneDeVistaCompleta, establecerSubvistaActual },
@@ -29,11 +30,13 @@ export default function DetallesLlamada({
     ubicacionesLlamada,
     cargandoUbicaciones,
     cargandoComentarios,
+    verUbicacionFinal,
     verModalNotificacion,
     verModalEstadoLlamada,
     ManejarVistaDeRegreso,
     verModalAgregarComentario,
     establecerRecargarComentarios,
+    establecerVerUbicacionFinal,
     establecerVerModalNotificacion,
     establecerVerModalEstadoLlamada,
     establecerVerModalAgregarComentario,
@@ -298,6 +301,19 @@ export default function DetallesLlamada({
         <p className="DetallesLlamada__Contenido--Card Header">
           Ubicación de la llamada
         </p>
+        <OpcionesDeSwitches
+          Opciones={[
+            {
+              Titulo: verUbicacionFinal ? "Final" : "Inicial",
+              Activo: verUbicacionFinal,
+              FuncionDeEstablecimiento: () => {
+                establecerVerUbicacionFinal(!verUbicacionFinal);
+              },
+              ValorDeEstablecimiento: verUbicacionFinal,
+              AlineadoDelSwitch: "Izquierda",
+            },
+          ]}
+        />
         {/* UBICACION DE LA LLAMADA */}
         {cargandoUbicaciones ? (
           <Cargando Texto="Cargando..." />
@@ -306,13 +322,18 @@ export default function DetallesLlamada({
             iconoPing="Imagenes/PinLlamada.png"
             textoPin="Ubicación de la llamada:"
             ubicacion={{
-              lat: ubicacionesLlamada.latitud_final,
-              lng: ubicacionesLlamada.longitud_final,
+              lat: verUbicacionFinal
+                ? ubicacionesLlamada.latitud_final
+                : ubicacionesLlamada.latitud_inicial,
+              lng: verUbicacionFinal
+                ? ubicacionesLlamada.longitud_final
+                : ubicacionesLlamada.longitud_inicial,
             }}
             center={[
               ubicacionesLlamada.latitud_final,
               ubicacionesLlamada.longitud_final,
             ]}
+            zoom={20}
           />
         )}
 

@@ -31,6 +31,7 @@ export default function useDetallesLlamada({
   const [recargarComentarios, establecerRecargarComentarios] = useState(0);
   const [ubicacionesLlamada, establecerUbicacionesLlamada] = useState([]);
   const [cargandoUbicaciones, establecerCargandoUbicaciones] = useState(true);
+  const [verUbicacionFinal, establecerVerUbicacionFinal] = useState(true);
   // ESTADOS PARA CONTROLAR LA VISIBILIDAD DE LOS MODALES
   const [verModalNotificacion, establecerVerModalNotificacion] =
     useState(false);
@@ -128,11 +129,13 @@ export default function useDetallesLlamada({
     ubicacionesLlamada,
     cargandoUbicaciones,
     cargandoComentarios,
+    verUbicacionFinal,
     verModalNotificacion,
     verModalEstadoLlamada,
     ManejarVistaDeRegreso,
     verModalAgregarComentario,
     establecerRecargarComentarios,
+    establecerVerUbicacionFinal,
     establecerVerModalNotificacion,
     establecerVerModalEstadoLlamada,
     establecerVerModalAgregarComentario,
