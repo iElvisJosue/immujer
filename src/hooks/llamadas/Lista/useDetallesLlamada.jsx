@@ -39,6 +39,9 @@ export default function useDetallesLlamada({
   const [verModalEstadoLlamada, establecerVerModalEstadoLlamada] =
     useState(false);
 
+  console.log(ubicacionesLlamada);
+  console.log(detallesLlamada);
+
   // EFECTO PARA GUARDAR EL ID DE LA LLAMADA ACTUAL Y ASI
   // VALIDAR SI DEBEMOS ACTUALIZAR SUS COORDENADAS EN TIEMPO REAL
   // DATO -> AL DESMONTAR EL COMPONENTE QUITAMOS EL ID DE LA LLAMADA
