@@ -31,7 +31,7 @@ export default function useDetallesLlamada({
   const [recargarComentarios, establecerRecargarComentarios] = useState(0);
   const [ubicacionesLlamada, establecerUbicacionesLlamada] = useState([]);
   const [cargandoUbicaciones, establecerCargandoUbicaciones] = useState(true);
-  const [verUbicacionFinal, establecerVerUbicacionFinal] = useState(true);
+  const [verUbicacionFinal, establecerVerUbicacionFinal] = useState(false);
   // ESTADOS PARA CONTROLAR LA VISIBILIDAD DE LOS MODALES
   const [verModalNotificacion, establecerVerModalNotificacion] =
     useState(false);

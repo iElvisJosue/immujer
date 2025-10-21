@@ -310,7 +310,7 @@ export default function DetallesLlamada({
                 establecerVerUbicacionFinal(!verUbicacionFinal);
               },
               ValorDeEstablecimiento: verUbicacionFinal,
-              AlineadoDelSwitch: "Izquierda",
+              AlineadoDelSwitch: "Centro",
             },
           ]}
         />
