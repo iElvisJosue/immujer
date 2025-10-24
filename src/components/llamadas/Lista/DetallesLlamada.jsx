@@ -69,6 +69,7 @@ export default function DetallesLlamada({
     telefono_emergencia,
     fase,
   } = detallesLlamada;
+  console.log(detallesLlamada);
 
   return (
     <div className="DetallesLlamada">

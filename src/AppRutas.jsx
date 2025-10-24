@@ -1,6 +1,7 @@
 // IMPORTAMOS LAS VISTAS
 import IniciarSesion from "./views/IniciarSesion";
 import NoExistente from "./views/NoExistente";
+import AvisoPrivacidad from "./views/AvisoPrivacidad";
 import Llamadas from "./views/Llamadas";
 import Dependencias from "./views/Dependencias";
 import Boletines from "./views/Boletines";
@@ -16,6 +17,10 @@ export const rutasPublicas = [
   {
     path: "/",
     element: <IniciarSesion />,
+  },
+  {
+    path: "/Aviso-Privacidad",
+    element: <AvisoPrivacidad />,
   },
 ];
 export const rutasParaTodosLosUsuarios = [
