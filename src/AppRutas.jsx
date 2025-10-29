@@ -2,6 +2,7 @@
 import IniciarSesion from "./views/IniciarSesion";
 import NoExistente from "./views/NoExistente";
 import AvisoPrivacidad from "./views/AvisoPrivacidad";
+import TerminosCondiciones from "./views/TerminosCondiciones";
 import Llamadas from "./views/Llamadas";
 import Dependencias from "./views/Dependencias";
 import Boletines from "./views/Boletines";
@@ -21,6 +22,10 @@ export const rutasPublicas = [
   {
     path: "/Aviso-Privacidad",
     element: <AvisoPrivacidad />,
+  },
+  {
+    path: "/Terminos-Y-Condiciones",
+    element: <TerminosCondiciones />,
   },
 ];
 export const rutasParaTodosLosUsuarios = [
