@@ -43,23 +43,29 @@ export default function TerminosCondiciones() {
       />
       <CardDetalles
         DetallesIcono={{ SVG: "CUBITOS", Clase: "SVG Principal" }}
-        Titulo="3. Tipos de Uso de la Aplicación"
+        Titulo="3. Modo de Uso de la Aplicación"
         Textos={[
           <>
-            <b>· Uso con registro previo:</b> La usuaria proporcionará datos
-            personales para registrarse en la aplicación, como nombre, edad,
-            domicilio, sexo y teléfonos de contacto de emergencia. Estos datos
-            se utilizarán para seguimiento posterior y coordinación con las
-            autoridades competentes.
+            Para utilizar el <b>{"'Botón Morado'"}</b>, es imprescindible que la
+            usuaria se registre previamente en la aplicación. Durante el proceso
+            de registro, la usuaria deberá proporcionar datos personales tales
+            como: nombre, edad, domicilio, sexo y números de contacto de
+            emergencia. Esta información será utilizada exclusivamente para
+            fines de seguimiento y coordinación con las autoridades competentes.
           </>,
-          // <>
-          //   <b>· Uso Emergente:</b> La usuaria puede activar el{" "}
-          //   <b>{"'Botón Morado'"}</b> sin necesidad de registro. En este caso,
-          //   se enviará un aviso inmediato al Centro de Atención a Emergencias
-          //   Urbanas (CENATEM), para el resguardo de la mujer en coordinación con
-          //   la Dirección especializada para la atención de la Violencia Familiar
-          //   y de Genero Municipal.
-          // </>,
+          <>
+            Una vez completado el registro, la usuaria podrá activar el{" "}
+            <b>{"'Botón Morado'"}</b>. Al hacerlo, se enviará automáticamente
+            una notificación al Centro de Atención a Emergencias Urbanas
+            (CENATEM), iniciando asi el protocolo de resguardo de la mujer en
+            coordinación con la Dirección Especializada para la Atención de la
+            Violencia Familiar y de Género Municipal.
+          </>,
+          <>
+            Es fundamental que el registro se realice de manera completa y
+            correcta para asegurar la efectividad y rapidez en la respuesta ante
+            cualquier emergencia.
+          </>,
         ]}
       />
       <CardDetalles
