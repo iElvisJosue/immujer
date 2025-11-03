@@ -49,14 +49,13 @@ export const TiempoRelativo = ({ Fecha, Hora }) => {
     const anios = Math.floor(dias / 365);
 
     if (anios > 0) return `${anios}a`;
-    if (meses > 0) return `${meses}m`;
-    if (semanas > 0) return `${semanas}s`;
+    if (meses > 0) return `${meses}mes`;
+    if (semanas > 0) return `${semanas}sem`;
     if (dias > 0) return `${dias}d`;
     if (horas > 0) return `${horas}h`;
     if (minutos > 0) return `${minutos}min`;
-    return `${segundos}s`;
-  } catch (e) {
-    console.log(e);
+    return `${segundos}seg`;
+  } catch {
     return "-";
   }
 };
