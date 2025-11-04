@@ -15,7 +15,6 @@ export default function useEditarUsuario({
   establecerSubvistaActual,
 }) {
   const { Editar } = useUsuariosContext();
-  const [verContrasena, establecerVerContrasena] = useState(false);
   const [usuarioActivo, establecerUsuarioActivo] = useState(
     detallesUsuario.activo
   );
@@ -30,7 +29,6 @@ export default function useEditarUsuario({
       Nombre: detallesUsuario.nombre,
       ApellidoPaterno: detallesUsuario.apellido_paterno,
       ApellidoMaterno: detallesUsuario.apellido_materno,
-      Contrasena: detallesUsuario.contrasena,
       Edad: detallesUsuario.edad,
       Telefono: detallesUsuario.telefono,
       Correo: detallesUsuario.correo,
@@ -43,7 +41,6 @@ export default function useEditarUsuario({
     criteriaMode: "all",
   });
 
-  const InputContrasena = verContrasena ? "text" : "password";
   const PeticionEditarUsuario = handleSubmit(async (data) => {
     const SistemaApp = AsignarTipoSistema(data.Rol);
     // MOSTRAMOS LA ALERTA DE REALIZANDO PETICIÓN
@@ -59,7 +56,6 @@ export default function useEditarUsuario({
       formData.append("Nombre", data.Nombre);
       formData.append("ApellidoPaterno", data.ApellidoPaterno);
       formData.append("ApellidoMaterno", data.ApellidoMaterno);
-      formData.append("Contrasena", data.Contrasena);
       formData.append("Edad", data.Edad);
       formData.append("Telefono", data.Telefono);
       formData.append("Correo", data.Correo);
@@ -103,12 +99,9 @@ export default function useEditarUsuario({
 
   return {
     register,
-    verContrasena,
     usuarioActivo,
     CampoRequerido,
-    InputContrasena,
     PeticionEditarUsuario,
-    establecerVerContrasena,
     establecerUsuarioActivo,
   };
 }

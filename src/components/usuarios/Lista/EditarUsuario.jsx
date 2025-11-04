@@ -28,11 +28,8 @@ export default function EditarUsuario({
   });
   const {
     register,
-    verContrasena,
-    establecerVerContrasena,
     usuarioActivo,
     establecerUsuarioActivo,
-    InputContrasena,
     CampoRequerido,
     PeticionEditarUsuario,
   } = useEditarUsuario({
@@ -71,12 +68,6 @@ export default function EditarUsuario({
       </div>
       <OpcionesDeSwitches
         Opciones={[
-          {
-            Titulo: "¿Ver contraseña?",
-            Activo: verContrasena,
-            FuncionDeEstablecimiento: establecerVerContrasena,
-            ValorDeEstablecimiento: verContrasena,
-          },
           {
             Titulo: "¿Activo?",
             Activo: usuarioActivo,
@@ -224,35 +215,6 @@ export default function EditarUsuario({
           </label>
         </div>
         {CampoRequerido("ApellidoMaterno")}
-      </span>
-      {/* CONTRASEÑA */}
-      <span className="ContenedorInput">
-        <div className="ContenedorInput__MaterialDesign">
-          <span className="ContenedorInput__MaterialDesign--Icono">
-            <LISTA_SVGS SVG="CONTRASENA" Box="0 0 16 16" />
-          </span>
-          <input
-            id="Contrasena"
-            name="Contrasena"
-            type={InputContrasena}
-            placeholder=" "
-            className="ContenedorInput__MaterialDesign--InputText SinBorde"
-            {...register("Contrasena", {
-              required: MENSAJES_DE_VALIDACION.REQUERIDO,
-              maxLength: {
-                value: 255,
-                message: MENSAJES_DE_VALIDACION.MAX255,
-              },
-            })}
-          />
-          <label
-            htmlFor="Contrasena"
-            className="ContenedorInput__MaterialDesign--Label"
-          >
-            Contraseña
-          </label>
-        </div>
-        {CampoRequerido("Contrasena")}
       </span>
       {/* EDAD */}
       <span className="ContenedorInput">
