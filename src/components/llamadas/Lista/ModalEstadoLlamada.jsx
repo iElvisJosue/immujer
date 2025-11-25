@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 // IMPORTAMOS LOS HOOKS A USAR
 import useActualizarEstadoLlamada from "../../../hooks/llamadas/Lista/useActualizarEstadoLlamada";
 // IMPORTAMOS LOS COMPONENTES A USAR
@@ -15,15 +14,17 @@ export default function ModalEstadoLlamada({
   onCerrarModal,
   detallesLlamada,
 }) {
-  const [estadoSeleccionado, establecerEstadoSeleccionado] = useState(null);
-  const { actualizandoEstado, PeticionActualizarEstadoLlamada } =
-    useActualizarEstadoLlamada({
-      idLlamada,
-      idModificador,
-      onCerrarModal,
-      detallesLlamada,
-      estadoSeleccionado,
-    });
+  const {
+    actualizandoEstado,
+    PeticionActualizarEstadoLlamada,
+    estadoSeleccionado,
+    establecerEstadoSeleccionado,
+  } = useActualizarEstadoLlamada({
+    idLlamada,
+    idModificador,
+    onCerrarModal,
+    detallesLlamada,
+  });
 
   const ClaseInvalida =
     estadoSeleccionado === ESTADOS_LLAMADA.Invalida
@@ -74,12 +75,14 @@ export default function ModalEstadoLlamada({
               <img src="Imagenes/Alerta_Exito.png" alt="Atendida" />
               <b>Atendida</b>
             </picture>
-            <button
-              className="ModalEstadoLlamada__Contenido--Boton"
-              onClick={PeticionActualizarEstadoLlamada}
-            >
-              Confirmar seleccion
-            </button>
+            {estadoSeleccionado && (
+              <button
+                className="ModalEstadoLlamada__Contenido--Boton"
+                onClick={PeticionActualizarEstadoLlamada}
+              >
+                Confirmar seleccion
+              </button>
+            )}
             <small className="ModalEstadoLlamada__Contenido--TextoInformativo">
               Esta acción cambiará el estado de la llamada de Pendiente a un
               estado final. Una vez confirmado, no podrás revertir este cambio.

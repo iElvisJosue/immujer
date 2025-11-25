@@ -10,9 +10,9 @@ export default function useActualizarEstadoLlamada({
   idModificador,
   onCerrarModal,
   detallesLlamada,
-  estadoSeleccionado,
 }) {
   const { ActualizarEstado } = useLlamadasContext();
+  const [estadoSeleccionado, establecerEstadoSeleccionado] = useState(null);
   const [actualizandoEstado, establecerActualizandoEstado] = useState(false);
 
   async function PeticionActualizarEstadoLlamada() {
@@ -42,5 +42,7 @@ export default function useActualizarEstadoLlamada({
   return {
     actualizandoEstado,
     PeticionActualizarEstadoLlamada,
+    estadoSeleccionado,
+    establecerEstadoSeleccionado,
   };
 }

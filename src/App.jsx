@@ -18,6 +18,7 @@ export default function App() {
   return (
     <AppProviders>
       <BrowserRouter>
+        {/* <BrowserRouter basename="/immujer"> */}
         <Routes>
           {/* RUTAS SIN PROTECCIÓN */}
           {rutasPublicas.map((ruta) => (
