@@ -8,7 +8,6 @@ import {
   AlertaRealizandoPeticion,
   AlertaInformativa,
 } from "../../../helpers/TiposDeAlertas";
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 
 export default function useEnviarNotificacion({
   idUsuario,
@@ -47,7 +46,6 @@ export default function useEnviarNotificacion({
     AlertaRealizandoPeticion();
     // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
     const formData = new FormData();
-    formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
     formData.append("idCreador", idUsuario);
     formData.append("TituloNotificacion", data.TituloNotificacion);
     formData.append("DetallesNotificacion", data.DetallesNotificacion);

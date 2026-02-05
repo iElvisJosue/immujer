@@ -9,7 +9,6 @@ import {
   AlertaRealizandoPeticion,
 } from "../../../helpers/TiposDeAlertas";
 // AYUDAS A USAR
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 import { ManejarRespuestasDelServidor } from "../../../helpers/ManejarRespuestasDelServidor";
 
 export default function useRegistrarDependencia({
@@ -36,7 +35,6 @@ export default function useRegistrarDependencia({
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();
-      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
       formData.append("idCreador", idUsuario);
       formData.append("NombreDependencia", data.NombreDependencia);
       formData.append("DescripcionDependencia", data.DescripcionDependencia);

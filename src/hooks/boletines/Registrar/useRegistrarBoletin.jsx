@@ -8,7 +8,6 @@ import {
   AlertaInformativa,
   AlertaRealizandoPeticion,
 } from "../../../helpers/TiposDeAlertas";
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 import { ManejarRespuestasDelServidor } from "../../../helpers/ManejarRespuestasDelServidor";
 
 export default function useRegistrarBoletin({
@@ -35,7 +34,6 @@ export default function useRegistrarBoletin({
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();
-      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
       formData.append("idCreador", idUsuario);
       formData.append("TituloBoletin", data.TituloBoletin);
       formData.append("DescripcionBoletin", data.DescripcionBoletin);

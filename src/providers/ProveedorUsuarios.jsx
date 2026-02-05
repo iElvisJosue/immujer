@@ -1,24 +1,16 @@
 /* eslint-disable react/prop-types */
-// IMPORTAMOS LAS LIBRERÍAS A USAR
-import Cookies from "js-cookie";
 // IMPORTAMOS LAS SOLICITUDES
 import * as PvUsuarios from "../api/authUsuarios";
 // IMPORTAMOS EL CONTEXTO DEL PROVIDER
 import { UsuariosContext } from "../context/UsuariosContext";
 // IMPORTAMOS LAS AYUDAS
-import { TOKEN_DE_ACCESO_SISTEMA } from "../helpers/Constantes";
 import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
 
 export const ProveedorUsuarios = ({ children }) => {
   const IniciarSesion = async (data) => {
     try {
-      const res = await PvUsuarios.SolicitudIniciarSesion(data);
-      const TOKEN_RECIBIDO = res.data?.token;
-      Cookies.set(TOKEN_DE_ACCESO_SISTEMA, TOKEN_RECIBIDO, {
-        expires: 1,
-        secure: true,
-      });
-      return { exito: true, data: res.data };
+      await PvUsuarios.SolicitudIniciarSesion(data);
+      return { exito: true };
     } catch (error) {
       const { status, data } = error.response || {};
       ManejarRespuestasDelServidor({ status, data });

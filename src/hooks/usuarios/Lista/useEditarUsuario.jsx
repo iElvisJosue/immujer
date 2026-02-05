@@ -5,7 +5,6 @@ import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
 import { useUsuariosContext } from "../../../context/UsuariosContext";
 // AYUDAS A USAR
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 import { AlertaRealizandoPeticion } from "../../../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../../../helpers/ManejarRespuestasDelServidor";
 
@@ -49,7 +48,6 @@ export default function useEditarUsuario({
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();
-      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
       formData.append("idUsuario", detallesUsuario.id_usuario);
       formData.append("Rol", data.Rol);
       formData.append("SistemaApp", SistemaApp);

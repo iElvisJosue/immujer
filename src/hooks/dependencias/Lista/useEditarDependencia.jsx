@@ -9,7 +9,6 @@ import {
   AlertaRealizandoPeticion,
 } from "../../../helpers/TiposDeAlertas";
 // AYUDAS A USAR
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 import { ManejarRespuestasDelServidor } from "../../../helpers/ManejarRespuestasDelServidor";
 
 export default function useEditarDependencia({
@@ -50,7 +49,6 @@ export default function useEditarDependencia({
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();
-      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
       formData.append("idDependencia", infDependencia.id_dependencia);
       formData.append("NombreDependencia", data.NombreDependencia);
       formData.append("DescripcionDependencia", data.DescripcionDependencia);

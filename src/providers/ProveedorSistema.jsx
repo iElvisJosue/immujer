@@ -13,8 +13,6 @@ import {
 } from "../helpers/Notificaciones";
 import { HOST } from "../helpers/Urls";
 import { ReproducirAudio } from "../helpers/Audios";
-import { TOKEN_DE_ACCESO_SISTEMA } from "../helpers/Constantes";
-import { COOKIE_CON_TOKEN } from "../helpers/AgregarCookiePeticion";
 import { AlertaEstadoNotificacion } from "../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
 
@@ -36,7 +34,7 @@ export const ProveedorSistema = ({ children }) => {
   // ESTADO PARA CONTROLAR LOS PERMISOS DE NOTIFICACIONES, EN BASE
   // AL PEMISO, MOSTRAREMOS UNA U OTRA ALERTA
   const [permisosNotificaciones, establecerPermisosNotificaciones] = useState(
-    Notification.permission
+    Notification.permission,
   );
   // ESTADO PARA CONTROLAR EL REINTENTO DE SOLICTUD DE NOTIFICACIONES
   // EN EL SISTEMA POR SI LOS RECHAZA. (TIENE 3 INTENTOS POR DEFECTO)
@@ -167,11 +165,13 @@ export const ProveedorSistema = ({ children }) => {
 
     // 1 -> ESTABLECEMOS LA CONEXION SSE
     const establecerConexion = () => {
+      const TOKEN_ACCESO_SSE = Cookies.get("TOKEN_ACCESO_SSE");
       if (SourceSSE) return; // EVITAMOS QUE SE CREEN VARIAS CONEXIONES
       SourceSSE = new EventSource(
-        `${HOST}api/web/sistema/establecer-conexion-sse/${COOKIE_CON_TOKEN}`
+        `${HOST}api/web/sistema/establecer-conexion-sse/${TOKEN_ACCESO_SSE}`,
       );
       SourceSSE.onmessage = (event) => {
+        console.log("Conectado...");
         const data = JSON.parse(event.data);
         CanalSSE.postMessage({ tipo: "sse-data", data });
         ProcesarTipoNotificacion(data);
@@ -239,20 +239,11 @@ export const ProveedorSistema = ({ children }) => {
   }, [infUsuario, permisosNotificaciones]);
 
   const ValidarCookie = async () => {
-    const cookies = Cookies.get();
-    const TOKEN_ACCESO = cookies[TOKEN_DE_ACCESO_SISTEMA];
-    // SI NO HAY COOKIE, ELIMINAMOS LA INFORMACIÓN ALMACENADA
-    // Y TERMINAMOS LA OPERACIÓN (NO HACEMOS LA CONSULTA)
-    if (!TOKEN_ACCESO) return QuitarInformacionAlmacenada();
-
     try {
-      const res = await PvSistema.SolicitudVerificarToken({
-        TOKEN_ACCESO,
-      });
+      const res = await PvSistema.SolicitudVerificarToken();
       EstablecerInformacionObtenida(res.data);
     } catch (err) {
       // ELIMINAMOS LA COOKIE
-      Cookies.remove(TOKEN_DE_ACCESO_SISTEMA);
       const { status, data } = err.response || {};
       ManejarRespuestasDelServidor({ status, data });
       QuitarInformacionAlmacenada();

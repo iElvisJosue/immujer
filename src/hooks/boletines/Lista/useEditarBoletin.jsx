@@ -5,7 +5,6 @@ import { ErrorMessage } from "@hookform/error-message";
 // CONTEXTOS A USAR
 import { useBoletinesContext } from "../../../context/BoletinesContext";
 // AYUDAS A USAR
-import { COOKIE_CON_TOKEN } from "../../../helpers/AgregarCookiePeticion";
 import { AlertaRealizandoPeticion } from "../../../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../../../helpers/ManejarRespuestasDelServidor";
 
@@ -36,7 +35,6 @@ export default function useEditarBoletin({
     try {
       // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
       const formData = new FormData();
-      formData.append("tokenDeAcceso", COOKIE_CON_TOKEN);
       formData.append("idBoletin", infBoletin.id_boletin);
       formData.append("TituloBoletin", data.TituloBoletin);
       formData.append("DescripcionBoletin", data.DescripcionBoletin);
