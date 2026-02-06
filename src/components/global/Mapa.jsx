@@ -59,7 +59,7 @@ export default function MapPicker({
               {textoPin}
               <br />
               <center>
-                {ubicacion.lat.toFixed(5)}, {ubicacion.lng.toFixed(5)}
+                {ubicacion.lat}, {ubicacion.lng}
               </center>
             </Popup>
           </Marker>
