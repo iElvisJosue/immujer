@@ -330,8 +330,8 @@ export default function DetallesLlamada({
                 : ubicacionesLlamada.longitud_inicial,
             }}
             center={[
-              ubicacionesLlamada.latitud_final,
-              ubicacionesLlamada.longitud_final,
+              ubicacionesLlamada.latitud_inicial,
+              ubicacionesLlamada.longitud_inicial,
             ]}
             zoom={20}
           />
