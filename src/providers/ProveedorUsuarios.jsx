@@ -60,17 +60,26 @@ export const ProveedorUsuarios = ({ children }) => {
       return { exito: false, data };
     }
   };
+  const CerrarSesion = async (data) => {
+    try {
+      const res = await PvUsuarios.SolicitudCerrarSesion(data);
+      return { exito: true, data: res.data };
+    } catch (error) {
+      const { status, data } = error.response || {};
+      ManejarRespuestasDelServidor({ status, data });
+      return { exito: false, data };
+    }
+  };
 
   return (
     <UsuariosContext.Provider
       value={{
-        // ESTAS SON LAS FUNCIONES QUE USAMOS
-        // PARA LAS SOLICITUDES
         IniciarSesion,
         ActualizarMiInformacion,
         Registrar,
         BuscarPorFiltro,
         Editar,
+        CerrarSesion,
       }}
     >
       {children}

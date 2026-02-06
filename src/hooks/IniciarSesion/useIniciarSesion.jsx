@@ -11,7 +11,6 @@ import {
 } from "../../helpers/TiposDeAlertas";
 import { ReproducirAudio } from "../../helpers/Audios";
 import { MOSTRAR, OCULTAR } from "../../helpers/MagicStrings";
-import { TOKEN_DE_ACCESO_SISTEMA } from "../../helpers/Constantes";
 
 export default function useIniciarSesion({ handleSubmit }) {
   const { IniciarSesion } = useUsuariosContext();
@@ -22,9 +21,10 @@ export default function useIniciarSesion({ handleSubmit }) {
   useEffect(() => {
     // SI NO EXISTE LA COOKIE DE INTENTOS DE INICIAR SESIÓN, LA CREAMOS
     VerificarCookieDeintentos();
-    // MOSTRAMOS UNA ALERTA DE SESION ACTIVA SOLO SI EL USUARIO TIENE
-    // UNA COOKIE DE ACCESO
-    if (Cookies.get()[TOKEN_DE_ACCESO_SISTEMA]) {
+    /** Si esta logueado, mostramos una alerta que le permita 
+     * ir al menu principal **/
+    const ESTA_LOGUEADO = Cookies.get("ESTA_LOGUEADO") === "true";
+    if (ESTA_LOGUEADO) {
       AlertaDePregunta({
         Titulo: "¡Tienes una sesión activa!",
         Mensaje: "¿Quieres ir al menú principal?",
@@ -77,21 +77,21 @@ export default function useIniciarSesion({ handleSubmit }) {
     }
   };
   const VerificarCookieDeintentos = () => {
-    if (!Cookies.get("IntentosDeIniciarSesion")) {
+    if (!Cookies.get("INTENTOS_SESION")) {
       EstablecerCookieDeIntentos();
     }
   };
   const EstablecerCookieDeIntentos = () => {
-    Cookies.set("IntentosDeIniciarSesion", "5", { expires: 15 / 1440 });
+    Cookies.set("INTENTOS_SESION", "5", { expires: 15 / 1440 });
   };
   const RestarIntentosDeIniciarSesion = () => {
-    const IntentosDeIniciarSesion = Cookies.get("IntentosDeIniciarSesion");
-    Cookies.set("IntentosDeIniciarSesion", IntentosDeIniciarSesion - 1, {
+    const IntentosDeIniciarSesion = Cookies.get("INTENTOS_SESION");
+    Cookies.set("INTENTOS_SESION", IntentosDeIniciarSesion - 1, {
       expires: 15 / 1440,
     });
   };
   const TieneIntentosDeIniciarSesion = () => {
-    const IntentosDeIniciarSesion = Cookies.get("IntentosDeIniciarSesion");
+    const IntentosDeIniciarSesion = Cookies.get("INTENTOS_SESION");
     if (IntentosDeIniciarSesion <= 0) {
       AlertaInformativa({
         Titulo: "¡Intentos agotados!",

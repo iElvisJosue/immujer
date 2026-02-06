@@ -132,3 +132,20 @@ export const AlertaEstadoNotificacion = async ({
     FuncionParaRealizar();
   }
 };
+export const AlertaCerrandoSesion = () => {
+  return Swal.fire({
+    title: "Cerrando sesión",
+    text: "Estamos finalizando tu sesión. Por favor, espera un momento.",
+    imageUrl: "Imagenes/Alerta_PeticionPendiente.png",
+    imageWidth: 150,
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    customClass: {
+      title: "TituloDeAlerta Azul",
+      htmlContainer: "ContenidoDeAlerta",
+      confirmButton: "BotonDeConfirmacion Azul",
+      popup: "AlertaDePregunta",
+    },
+  });
+};

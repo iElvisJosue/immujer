@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 // CONTEXTOS A USAR
 import { useSistemaContext } from "../context/SistemaContext";
+import { useUsuariosContext } from "../context/UsuariosContext";
 // COMPONENTES A USAR
 import Titulo from "../components/global/Titulo";
 import Separador from "../components/global/Separador";
@@ -13,8 +14,7 @@ import Notificaciones from "../components/global/Notificaciones";
 import { HOST_IMAGENES } from "../helpers/Urls";
 import { LISTA_SVGS } from "../helpers/SVGs";
 import { OpcionesDelMenu } from "../helpers/OpcionesDelMenu";
-import { AlertaDePregunta } from "../helpers/TiposDeAlertas";
-import { TOKEN_DE_ACCESO_SISTEMA } from "../helpers/Constantes";
+import { AlertaCerrandoSesion, AlertaDePregunta } from "../helpers/TiposDeAlertas";
 // ESTILOS A USAR
 import "../styles/components/global/Main.css";
 
@@ -34,10 +34,9 @@ export default function PlatillaMain({
   children,
 }) {
   const {
-    infUsuario,
-    obtenerInformacionNuevamente,
-    establecerObtenerInformacionNuevamente,
+    infUsuario: { id_usuario, rol, foto },
   } = useSistemaContext();
+  const { CerrarSesion } = useUsuariosContext();
   const navigate = useNavigate();
   const opcionesRef = useRef(null);
   const [, setSearchParams] = useSearchParams();
@@ -58,22 +57,26 @@ export default function PlatillaMain({
       opciones.removeEventListener("wheel", handleWheelScroll); // Limpieza al desmontar
     };
   }, []);
-  const EliminarSesionActual = () => {
-    Cookies.remove(TOKEN_DE_ACCESO_SISTEMA);
-    establecerObtenerInformacionNuevamente(!obtenerInformacionNuevamente);
+  const EliminarSesionActual = async () => {
+    AlertaCerrandoSesion();
+    const res = await CerrarSesion();
+    if (!res.exito) return;
+    Cookies.remove("ESTA_LOGUEADO");
+    Cookies.remove("TOKEN_ACCESO_SSE");
+    window.location.href = "/";
   };
 
   const ClaseMenu = verMenu ? "Main__Menu Ver" : "Main__Menu";
   return (
     <main className="Main">
       {/* SECCION DE LAS NOTIFICACIONES */}
-      <Notificaciones idUsuario={infUsuario.id_usuario} />
+      <Notificaciones idUsuario={id_usuario} />
       <aside className={ClaseMenu}>
         <picture className="Main__Menu--Imagenes">
           <img src="ImmujerLogo.png" alt="Logo Sistema" title="Logo Sistema" />
         </picture>
         <span className="Main__Menu--Opciones">
-          {OpcionesDelMenu[infUsuario.rol].map(
+          {OpcionesDelMenu[rol].map(
             ({ Tooltip, Svg, BoxSvg, Url, Tamaño }, index) => (
               <button
                 key={index}
@@ -87,7 +90,7 @@ export default function PlatillaMain({
               >
                 <LISTA_SVGS SVG={Svg} Box={BoxSvg} Tamaño={Tamaño} />
               </button>
-            )
+            ),
           )}
         </span>
         <span className="Main__Menu--Configuracion">
@@ -109,7 +112,7 @@ export default function PlatillaMain({
           </button>
           <picture className="Main__Menu--Imagenes">
             <img
-              src={`${HOST_IMAGENES}/Perfil/${infUsuario.foto}`}
+              src={`${HOST_IMAGENES}/Perfil/${foto}`}
               alt="Foto de Perfil"
               onClick={() => navigate("/Perfil")}
             />

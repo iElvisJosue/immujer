@@ -10,3 +10,5 @@ export const SolicitudBuscarPorFiltro = (data) =>
   axios.post("/web/usuarios/buscar-por-filtro", data);
 export const SolicitudEditar = (data) =>
   axios.put("/web/usuarios/editar", data);
+export const SolicitudCerrarSesion = () =>
+  axios.post("/web/usuarios/cerrar-sesion");
