@@ -72,12 +72,8 @@ export const ProveedorSistema = ({ children }) => {
   // CUANDO EL USUARIO SE LOGUEA O CUANDO EL USUARIO
   // ACTUALIZA SU INFORMACION PERSONAL
   useEffect(() => {
-    // const ESTA_LOGUEADO = Cookies.get("ESTA_LOGUEADO") === "true";
-    // /** Si el usuario no esta logueado, no hacemos nada **/
-    // if (!ESTA_LOGUEADO) {
-    //   QuitarInformacionAlmacenada();
-    //   return;
-    // }
+    // SI ESTAMOS EN LA RAIZ (LOGIN), NO HACEMOS NADA
+    if (window.location.pathname === "/") return;
     ValidarCookie();
   }, [obtenerInformacionNuevamente]);
   // EFECTO PARA SABER SI ES LA PRIMERA VEZ QUE INGRESA AL SISTEMA
