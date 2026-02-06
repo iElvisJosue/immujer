@@ -62,7 +62,6 @@ export default function PlatillaMain({
     const res = await CerrarSesion();
     if (!res.exito) return;
     Cookies.remove("ESTA_LOGUEADO");
-    Cookies.remove("TOKEN_ACCESO_SSE");
     window.location.href = "/";
   };
 

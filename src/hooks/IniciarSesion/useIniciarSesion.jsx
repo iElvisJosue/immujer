@@ -21,7 +21,7 @@ export default function useIniciarSesion({ handleSubmit }) {
   useEffect(() => {
     // SI NO EXISTE LA COOKIE DE INTENTOS DE INICIAR SESIÓN, LA CREAMOS
     VerificarCookieDeintentos();
-    /** Si esta logueado, mostramos una alerta que le permita 
+    /** Si esta logueado, mostramos una alerta que le permita
      * ir al menu principal **/
     const ESTA_LOGUEADO = Cookies.get("ESTA_LOGUEADO") === "true";
     if (ESTA_LOGUEADO) {
@@ -54,6 +54,8 @@ export default function useIniciarSesion({ handleSubmit }) {
       CrearItemPrimeraVez();
       // REINICIAMOS LA CANTIDAD DE INTENTOS DE INICIAR SESIÓN
       EstablecerCookieDeIntentos();
+      /** Creamos la cookie para saber si el usuario esta logueado **/
+      Cookies.set("ESTA_LOGUEADO", "true", { expires: 1, secure: true });
       window.location.href = "/Llamadas";
     } else {
       RestarIntentosDeIniciarSesion();
@@ -82,7 +84,7 @@ export default function useIniciarSesion({ handleSubmit }) {
     }
   };
   const EstablecerCookieDeIntentos = () => {
-    Cookies.set("INTENTOS_SESION", "5", { expires: 15 / 1440 });
+    Cookies.set("INTENTOS_SESION", "5", { expires: 15 / 1440, secure: true });
   };
   const RestarIntentosDeIniciarSesion = () => {
     const IntentosDeIniciarSesion = Cookies.get("INTENTOS_SESION");
