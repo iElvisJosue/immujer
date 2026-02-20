@@ -62,7 +62,7 @@ export default function PlatillaMain({
     const res = await CerrarSesion();
     if (!res.exito) return;
     Cookies.remove("ESTA_LOGUEADO");
-    window.location.href = "/";
+    window.location.href = "/immujer/";
   };
 
   const ClaseMenu = verMenu ? "Main__Menu Ver" : "Main__Menu";

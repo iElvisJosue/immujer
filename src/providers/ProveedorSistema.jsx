@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Swal from "sweetalert2";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useState, useEffect, useRef } from "react";
 // IMPORTAMOS LAS SOLICITUDES
 import * as PvSistema from "../api/authSistema.js";
@@ -15,6 +15,14 @@ import { HOST } from "../helpers/Urls";
 import { ReproducirAudio } from "../helpers/Audios";
 import { AlertaEstadoNotificacion } from "../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
+
+/** TODO -> ES TEMPORAL**/
+const RutaActual = window.location.pathname;
+const RutasSinValidacion = [
+  "/immujer/",
+  "/immujer/Aviso-Privacidad",
+  "/immujer/Terminos-Y-Condiciones",
+];
 
 export const ProveedorSistema = ({ children }) => {
   // ESTADO PARA ALMACENAR TODA LA INFORMACION DEL USUARIO LOGUEADO
@@ -72,16 +80,17 @@ export const ProveedorSistema = ({ children }) => {
   // CUANDO EL USUARIO SE LOGUEA O CUANDO EL USUARIO
   // ACTUALIZA SU INFORMACION PERSONAL
   useEffect(() => {
-    // SI ESTAMOS EN LA RAIZ (LOGIN), NO HACEMOS NADA
-    if (window.location.pathname === "/") return;
+    /** Checamos si la ruta actual debe validar la cookie **/
+    if (RutasSinValidacion.includes(RutaActual)) return;
     ValidarCookie();
   }, [obtenerInformacionNuevamente]);
   // EFECTO PARA SABER SI ES LA PRIMERA VEZ QUE INGRESA AL SISTEMA
   useEffect(() => {
+    const RutaActual = window.location.pathname;
     // SI NO HAY USUARIO LOGUEADO, NO HACEMOS NADA
     if (!infUsuario) return;
-    // SI ESTAMOS EN LA RAIZ (LOGIN), NO HACEMOS NADA
-    if (window.location.pathname === "/") return;
+    /** Checamos si la ruta actual debe validar la cookie **/
+    if (RutasSinValidacion.includes(RutaActual)) return;
     // SI POR ALGUNA RAZÓN EL USUARIO TIENE LOS PERMISOS ANTES
     // DE QUE INGRESE AL SISTEMA, NO HACEMOS NADA
     if (permisosNotificaciones === "granted") return;
@@ -167,10 +176,10 @@ export const ProveedorSistema = ({ children }) => {
 
     // 1 -> ESTABLECEMOS LA CONEXION SSE
     const establecerConexion = () => {
-      const TOKEN_ACCESO_SSE = Cookies.get("TOKEN_ACCESO_SSE");
+      // const TOKEN_ACCESO_SSE = Cookies.get("TOKEN_ACCESO_SSE");
       if (SourceSSE) return; // EVITAMOS QUE SE CREEN VARIAS CONEXIONES
       SourceSSE = new EventSource(
-        `${HOST}api/web/sistema/establecer-conexion-sse/${TOKEN_ACCESO_SSE}`,
+        `${HOST}api/web/sistema/establecer-conexion-sse`,
       );
       SourceSSE.onmessage = (event) => {
         console.log("Conectado...");

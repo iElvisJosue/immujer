@@ -5,7 +5,7 @@ export const ReproducirAudio = ({
   Nombre = "Notificacion_Llamada.mp3",
   Volumen = 0.5,
 }) => {
-  const sonido = new Audio(`/Audios/${Nombre}`);
+  const sonido = new Audio(`/immujer/Audios/${Nombre}`);
   sonido.volume = Volumen;
   sonido.play().catch(() => {
     AlertaInformativa({
