@@ -18,10 +18,15 @@ import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelSer
 
 /** TODO -> ES TEMPORAL**/
 const RutaActual = window.location.pathname;
+// const RutasSinValidacion = [
+//   "/immujer/",
+//   "/immujer/Aviso-Privacidad",
+//   "/immujer/Terminos-Y-Condiciones",
+// ];
 const RutasSinValidacion = [
-  "/immujer/",
-  "/immujer/Aviso-Privacidad",
-  "/immujer/Terminos-Y-Condiciones",
+  "/",
+  "/Aviso-Privacidad",
+  "/Terminos-Y-Condiciones",
 ];
 
 export const ProveedorSistema = ({ children }) => {
