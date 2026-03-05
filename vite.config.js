@@ -4,8 +4,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/immujer/",
   /** PARA PRODUCCIÓN **/
+  // base: "/immujer/",
   // server: {
   //   https: {
   //     key: fs.readFileSync("./certs/mpassl.key"),

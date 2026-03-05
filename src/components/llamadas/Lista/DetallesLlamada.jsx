@@ -9,6 +9,7 @@ import ListaComentarios from "./ListaComentarios";
 import ModalEstadoLlamada from "./ModalEstadoLlamada";
 import SinResultados from "../../global/SinResultados";
 import ModalAgregarComentario from "./ModalAgregarComentario";
+import OpcionesDeSwitches from "../../global/OpcionesDeSwitches";
 import ModalEnviarNotificacionPersonalizada from "./ModalEnviarNotificacionPersonalizada";
 //AYUDAS A USAR
 import { LISTA_SVGS } from "../../../helpers/SVGs";
@@ -16,7 +17,6 @@ import { ESTADOS_LLAMADA } from "../../../helpers/Constantes";
 import { FormatearFechaALetra } from "../../../helpers/FuncionesGenerales";
 // ESTILOS A USAR
 import "../../../styles/components/llamadas/Lista/DetallesLlamada.css";
-import OpcionesDeSwitches from "../../global/OpcionesDeSwitches";
 
 export default function DetallesLlamada({
   PropsVista: { vieneDeVistaCompleta, establecerSubvistaActual },
@@ -330,8 +330,8 @@ export default function DetallesLlamada({
                 : ubicacionesLlamada.longitud_inicial,
             }}
             center={[
-              ubicacionesLlamada.latitud_inicial,
-              ubicacionesLlamada.longitud_inicial,
+              ubicacionesLlamada.latitud_final,
+              ubicacionesLlamada.longitud_final,
             ]}
             zoom={20}
           />
