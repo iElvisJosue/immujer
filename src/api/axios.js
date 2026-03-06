@@ -4,7 +4,7 @@ const instance = axios.create({
   /** Para producción **/
   // baseURL: "https://qa.acapulco.gob.mx:3050/api",
   /** Para pruebas en producción **/
-  baseURL: "https://immujer.ideasdistintas.com/api",
+  baseURL: "/api",
   /** Para pruebas en local **/
   // baseURL: "http://localhost:3050/api",
   withCredentials: true,
