@@ -92,7 +92,7 @@ export default function Notificaciones({ idUsuario }) {
                   >
                     <picture className="Notificaciones__Lista--Item--Imagen">
                       <img
-                        src={`/immujer/Imagenes/${ImagenesNotificacion[tipo]}`}
+                        src={`/Imagenes/${ImagenesNotificacion[tipo]}`}
                         alt="Icono notificación"
                       />
                     </picture>
