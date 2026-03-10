@@ -181,10 +181,10 @@ export const ProveedorSistema = ({ children }) => {
 
     // 1 -> ESTABLECEMOS LA CONEXION SSE
     const establecerConexion = () => {
-      // const TOKEN_ACCESO_SSE = Cookies.get("TOKEN_ACCESO_SSE");
+      const TOKEN_ACCESO_SSE = "9cfa88e23hcdzifs4ouebyuu7eroizdy42zqacstbo5adox3g2azae72f9a37a1d2aafc9d";
       if (SourceSSE) return; // EVITAMOS QUE SE CREEN VARIAS CONEXIONES
       SourceSSE = new EventSource(
-        `${HOST}api/web/sistema/establecer-conexion-sse`,
+        `${HOST}api/web/sistema/establecer-conexion-sse/${TOKEN_ACCESO_SSE}`,
       );
       SourceSSE.onmessage = (event) => {
         console.log("Conectado...");
