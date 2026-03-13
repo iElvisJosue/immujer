@@ -1,7 +1,7 @@
 /** Para producción **/
-// export const HOST = "https://qa.acapulco.gob.mx:3050/";
-// export const HOST_IMAGENES = "https://qa.acapulco.gob.mx:3050/Imagenes";
-// export const HOST_ARCHIVOS = "https://qa.acapulco.gob.mx:3050/Archivos";
+// export const HOST = "https://backendserver.acapulco.gob.mx/backendimmujer/";
+// export const HOST_IMAGENES = "https://backendserver.acapulco.gob.mx/backendimmujer/Imagenes";
+// export const HOST_ARCHIVOS = "https://backendserver.acapulco.gob.mx/backendimmujer/Archivos";
 /** Para pruebas en producción **/
 export const HOST = "https://immujer.ideasdistintas.com/";
 export const HOST_IMAGENES = "https://immujer.ideasdistintas.com/Imagenes";

@@ -167,7 +167,7 @@ export default function DetallesLlamada({
         {/* ID DE LA LLAMADA */}
         <span className="DetallesLlamada__Contenido--Card ID">
           <img
-            src="/Imagenes/Numero_Llamada.png"
+            src="Imagenes/Numero_Llamada.png"
             alt="ID"
             className="DetallesLlamada__Contenido--Card--Icono"
           />

@@ -45,6 +45,7 @@ export default function useDetallesLlamada({
   // DATO -> AL DESMONTAR EL COMPONENTE QUITAMOS EL ID DE LA LLAMADA
   useEffect(() => {
     EstablecerIdLlamadaActual(idLlamada);
+    establecerCargandoUbicaciones(true);
     return () => {
       EstablecerIdLlamadaActual(null);
     };
@@ -54,9 +55,6 @@ export default function useDetallesLlamada({
   useEffect(() => {
     async function ObtenerDetallesLlamada() {
       try {
-        // MOSTRAMOS EL LOADER TRAS UNA NUEVA BUSQUEDA
-        // (POR SI EDITAN EL ID EN LA URL)
-        establecerCargandoDetalles(true);
         const res = await ObtenerDetalles({ idLlamada });
         if (res.exito) {
           establecerDetallesLlamada({ ...res.data[0], id_llamada: idLlamada });
@@ -72,6 +70,18 @@ export default function useDetallesLlamada({
     }
     ObtenerDetallesLlamada();
   }, [idLlamada]);
+  // EFECTO PARA VOLVER A OBTENER LAS CC DE LA LLAMADA
+  useEffect(() => {
+    async function ObtenerCoordenadas() {
+      try {
+        const res = await ObtenerUbicaciones({ idLlamada });
+        if (res.exito) establecerUbicacionesLlamada(res.data[0]);
+      } finally {
+        establecerCargandoUbicaciones(false);
+      }
+    }
+    ObtenerCoordenadas();
+  }, [idLlamada, recargarCoordenadas]);
   // EFECTO PARA OBTENER LOS COMENTARIOS DE LA LLAMADA
   useEffect(() => {
     async function ObtenerComentariosLlamada() {
@@ -84,18 +94,6 @@ export default function useDetallesLlamada({
     }
     ObtenerComentariosLlamada();
   }, [idLlamada, recargarComentarios]);
-  // EFECTO PARA VOLVER A OBTENER LAS CC DE LA LLAMADA
-  useEffect(() => {
-    async function ObtenerCoordenadas() {
-      try {
-        const res = await ObtenerUbicaciones({ idLlamada });
-        if (res.exito) establecerUbicacionesLlamada(res.data[0]);
-      } finally {
-        establecerCargandoUbicaciones(false);
-      }
-    }
-    ObtenerCoordenadas();
-  }, [recargarCoordenadas]);
 
   function MostrarAlertaFaseCierre(infLlamada) {
     const { fase } = infLlamada;

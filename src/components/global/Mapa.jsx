@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/** Librerias **/
 import {
   MapContainer,
   TileLayer,
@@ -7,6 +8,9 @@ import {
   Popup,
 } from "react-leaflet";
 import L from "leaflet";
+import { useEffect } from "react";
+import { useMap } from "react-leaflet";
+/** Estilos **/
 import "leaflet/dist/leaflet.css";
 
 export default function MapPicker({
@@ -37,6 +41,19 @@ export default function MapPicker({
       // },
     });
   }
+
+  function SeguimientoTiempoReal({ ubicacion }) {
+    const map = useMap();
+
+    useEffect(() => {
+      if (ubicacion) {
+        map.panTo(ubicacion);
+      }
+    }, [ubicacion, map]);
+
+    return null;
+  }
+
   return (
     <>
       <MapContainer
@@ -52,6 +69,7 @@ export default function MapPicker({
         }}
       >
         <SeleccionarUbicacion />
+        <SeguimientoTiempoReal ubicacion={ubicacion} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {ubicacion && (
           <Marker position={ubicacion} icon={markerIcon}>

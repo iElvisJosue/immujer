@@ -48,7 +48,7 @@ export default function IniciarSesion() {
         onSubmit={PeticionIniciarSesion}
       >
         <img
-          src="ImmujerLogo.png"
+          src="Imagenes/ImmujerLogo.png"
           alt="Logo Sistema"
           className="IniciarSesion__Formulario--Imagen"
         />

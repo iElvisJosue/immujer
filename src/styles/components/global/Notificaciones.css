@@ -140,6 +140,7 @@
 }
 .Notificaciones__Lista--Item--Detalles {
   display: flex;
+  flex-direction: column;
   font-size: clamp(10px, 2vw, 12px);
   gap: 2px;
 }

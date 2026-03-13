@@ -16,19 +16,6 @@ import { ReproducirAudio } from "../helpers/Audios";
 import { AlertaEstadoNotificacion } from "../helpers/TiposDeAlertas";
 import { ManejarRespuestasDelServidor } from "../helpers/ManejarRespuestasDelServidor";
 
-/** TODO -> ES TEMPORAL**/
-const RutaActual = window.location.pathname;
-// const RutasSinValidacion = [
-//   "/immujer/",
-//   "/immujer/Aviso-Privacidad",
-//   "/immujer/Terminos-Y-Condiciones",
-// ];
-const RutasSinValidacion = [
-  "/",
-  "/Aviso-Privacidad",
-  "/Terminos-Y-Condiciones",
-];
-
 export const ProveedorSistema = ({ children }) => {
   // ESTADO PARA ALMACENAR TODA LA INFORMACION DEL USUARIO LOGUEADO
   const [infUsuario, establecerInfUsuario] = useState(null);
@@ -86,16 +73,15 @@ export const ProveedorSistema = ({ children }) => {
   // ACTUALIZA SU INFORMACION PERSONAL
   useEffect(() => {
     /** Checamos si la ruta actual debe validar la cookie **/
-    if (RutasSinValidacion.includes(RutaActual)) return;
+    if (window.location.pathname === "/immujer/") return;
     ValidarCookie();
   }, [obtenerInformacionNuevamente]);
   // EFECTO PARA SABER SI ES LA PRIMERA VEZ QUE INGRESA AL SISTEMA
   useEffect(() => {
-    const RutaActual = window.location.pathname;
     // SI NO HAY USUARIO LOGUEADO, NO HACEMOS NADA
     if (!infUsuario) return;
     /** Checamos si la ruta actual debe validar la cookie **/
-    if (RutasSinValidacion.includes(RutaActual)) return;
+    if (window.location.pathname === "/immujer/") return;
     // SI POR ALGUNA RAZÓN EL USUARIO TIENE LOS PERMISOS ANTES
     // DE QUE INGRESE AL SISTEMA, NO HACEMOS NADA
     if (permisosNotificaciones === "granted") return;
@@ -181,7 +167,8 @@ export const ProveedorSistema = ({ children }) => {
 
     // 1 -> ESTABLECEMOS LA CONEXION SSE
     const establecerConexion = () => {
-      const TOKEN_ACCESO_SSE = "9cfa88e23hcdzifs4ouebyuu7eroizdy42zqacstbo5adox3g2azae72f9a37a1d2aafc9d";
+      const TOKEN_ACCESO_SSE =
+        "9cfa88e23hcdzifs4ouebyuu7eroizdy42zqacstbo5adox3g2azae72f9a37a1d2aafc9d";
       if (SourceSSE) return; // EVITAMOS QUE SE CREEN VARIAS CONEXIONES
       SourceSSE = new EventSource(
         `${HOST}api/web/sistema/establecer-conexion-sse/${TOKEN_ACCESO_SSE}`,
@@ -284,7 +271,7 @@ export const ProveedorSistema = ({ children }) => {
         ID: `llamada-nueva-${idLlamada}`,
         Silenciosa: true,
         onClick: () => {
-          window.open(`/Llamadas?Vista=3&Id=${idLlamada}`, "_blank");
+          window.open(`/immujer/Llamadas?Vista=3&Id=${idLlamada}`, "_blank");
         },
       });
     }

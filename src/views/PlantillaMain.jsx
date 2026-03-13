@@ -62,8 +62,7 @@ export default function PlatillaMain({
     const res = await CerrarSesion();
     if (!res.exito) return;
     Cookies.remove("ESTA_LOGUEADO");
-    // window.location.href = "/immujer/";
-    window.location.href = "/";
+    window.location.href = "/immujer/";
   };
 
   const ClaseMenu = verMenu ? "Main__Menu Ver" : "Main__Menu";
@@ -73,7 +72,7 @@ export default function PlatillaMain({
       <Notificaciones idUsuario={id_usuario} />
       <aside className={ClaseMenu}>
         <picture className="Main__Menu--Imagenes">
-          <img src="ImmujerLogo.png" alt="Logo Sistema" title="Logo Sistema" />
+          <img src="Imagenes/ImmujerLogo.png" alt="Logo Sistema" title="Logo Sistema" />
         </picture>
         <span className="Main__Menu--Opciones">
           {OpcionesDelMenu[rol].map(

@@ -17,8 +17,7 @@ import ProteccionParaAdministrador from "./security/ProteccionParaAdministrador"
 export default function App() {
   return (
     <AppProviders>
-      <BrowserRouter>
-      {/* <BrowserRouter basename="/immujer"> */}
+      <BrowserRouter basename="/immujer">
         <Routes>
           {/* RUTAS SIN PROTECCIÓN */}
           {rutasPublicas.map((ruta) => (

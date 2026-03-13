@@ -7,7 +7,7 @@ export const SolicitarPermisosDeNotificacion = async () => {
   return await Notification.requestPermission();
 };
 export const MostrarNotificacion = ({
-  Icono = "/ImmujerLogo.png",
+  Icono = "Imagenes/ImmujerLogo.png",
   Titulo = "🔔 Nueva notificación",
   Detalles = "Haz clic para ver los detalles.",
   Silenciosa = false,

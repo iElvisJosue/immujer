@@ -54,8 +54,7 @@ export default function Notificaciones({ idUsuario }) {
         onClick={() => establecerVerNotificaciones(!verNotificaciones)}
       >
         <picture className="Notificaciones__Previsualizacion--Imagen">
-          {/* <img src="/immujer/Imagenes/Notificaciones.png" alt="Logo notificaciones" /> */}
-          <img src="/Imagenes/Notificaciones.png" alt="Logo notificaciones" />
+          <img src="Imagenes/Notificaciones.png" alt="Logo notificaciones" />
         </picture>
         <p className="Notificaciones__Previsualizacion--Titulo">
           {notificacionesNoVistas.length > 0
@@ -92,7 +91,7 @@ export default function Notificaciones({ idUsuario }) {
                   >
                     <picture className="Notificaciones__Lista--Item--Imagen">
                       <img
-                        src={`/Imagenes/${ImagenesNotificacion[tipo]}`}
+                        src={`Imagenes/${ImagenesNotificacion[tipo]}`}
                         alt="Icono notificación"
                       />
                     </picture>

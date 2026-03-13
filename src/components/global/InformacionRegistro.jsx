@@ -5,7 +5,7 @@ import "../../styles/components/global/InformacionRegistro.css";
 export default function InformacionRegistro({
   Imagen = "Imagenes/Seccion.png",
   Titulo = "Titulo",
-  InfDestacada = {},
+  InfDestacada = null,
   ID = 0,
   Descripcion = "Datos importantes",
   Detalles = "Datos extras",
