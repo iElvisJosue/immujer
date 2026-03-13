@@ -4,9 +4,9 @@ const instance = axios.create({
   /** Para producción **/
   // baseURL: "https://backendserver.acapulco.gob.mx/backendimmujer/api",
   /** Para pruebas en producción **/
-  baseURL: "/api",
+  // baseURL: "/api",
   /** Para pruebas en local **/
-  // baseURL: "http://localhost:3050/api",
+  baseURL: "http://localhost:3050/api",
   withCredentials: true,
 });
 

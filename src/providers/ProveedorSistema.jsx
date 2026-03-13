@@ -73,7 +73,8 @@ export const ProveedorSistema = ({ children }) => {
   // ACTUALIZA SU INFORMACION PERSONAL
   useEffect(() => {
     /** Checamos si la ruta actual debe validar la cookie **/
-    if (window.location.pathname === "/immujer/") return;
+    // if (window.location.pathname === "/immujer/") return;
+    if (window.location.pathname === "/") return;
     ValidarCookie();
   }, [obtenerInformacionNuevamente]);
   // EFECTO PARA SABER SI ES LA PRIMERA VEZ QUE INGRESA AL SISTEMA
@@ -81,7 +82,8 @@ export const ProveedorSistema = ({ children }) => {
     // SI NO HAY USUARIO LOGUEADO, NO HACEMOS NADA
     if (!infUsuario) return;
     /** Checamos si la ruta actual debe validar la cookie **/
-    if (window.location.pathname === "/immujer/") return;
+    // if (window.location.pathname === "/immujer/") return;
+    if (window.location.pathname === "/") return;
     // SI POR ALGUNA RAZÓN EL USUARIO TIENE LOS PERMISOS ANTES
     // DE QUE INGRESE AL SISTEMA, NO HACEMOS NADA
     if (permisosNotificaciones === "granted") return;
@@ -271,7 +273,8 @@ export const ProveedorSistema = ({ children }) => {
         ID: `llamada-nueva-${idLlamada}`,
         Silenciosa: true,
         onClick: () => {
-          window.open(`/immujer/Llamadas?Vista=3&Id=${idLlamada}`, "_blank");
+          // window.open(`/immujer/Llamadas?Vista=3&Id=${idLlamada}`, "_blank");
+          window.open(`/Llamadas?Vista=3&Id=${idLlamada}`, "_blank");
         },
       });
     }

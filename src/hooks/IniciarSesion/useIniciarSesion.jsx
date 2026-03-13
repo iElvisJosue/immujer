@@ -31,7 +31,8 @@ export default function useIniciarSesion({ handleSubmit }) {
         TextoBotonCancelar: "No",
         TextoBotonConfirmar: "Si, ir al menú principal",
         FuncionParaRealizar: () => {
-          window.location.href = "/immujer/Llamadas";
+          window.location.href = "/Llamadas";
+          // window.location.href = "/immujer/Llamadas";
         },
       });
     }
