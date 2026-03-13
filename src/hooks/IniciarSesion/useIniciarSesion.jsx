@@ -57,7 +57,8 @@ export default function useIniciarSesion({ handleSubmit }) {
       EstablecerCookieDeIntentos();
       /** Creamos la cookie para saber si el usuario esta logueado **/
       Cookies.set("ESTA_LOGUEADO", "true", { expires: 1, secure: true });
-      window.location.href = "/immujer/Llamadas";
+      window.location.href = "/Llamadas";
+      // window.location.href = "/immujer/Llamadas";
     } else {
       RestarIntentosDeIniciarSesion();
     }
