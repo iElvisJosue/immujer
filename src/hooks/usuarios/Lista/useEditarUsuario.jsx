@@ -33,7 +33,6 @@ export default function useEditarUsuario({
       Correo: detallesUsuario.correo,
       CodigoPostal: detallesUsuario.codigo_postal,
       Colonia: detallesUsuario.colonia,
-      NombreConyuge: detallesUsuario.nombre_conyuge,
       ContactoEmergencia: detallesUsuario.contacto_emergencia,
       TelefonoContacto: detallesUsuario.telefono_emergencia,
     },
@@ -59,9 +58,8 @@ export default function useEditarUsuario({
       formData.append("Correo", data.Correo);
       formData.append("CodigoPostal", data.CodigoPostal);
       formData.append("Colonia", data.Colonia);
-      formData.append("NombreConyuge", data.NombreConyuge);
-      formData.append("ContactoEmergencia", data.ContactoEmergencia);
-      formData.append("TelefonoContacto", data.TelefonoContacto);
+      formData.append("ContactoEmergencia", data.ContactoEmergencia ?? "");
+      formData.append("TelefonoContacto", data.TelefonoContacto ?? "");
       // ESTO SOLO SE USA EN CASO DE QUE NO SE HAYA MODIFICADO LA FOTO
       formData.append("Foto", detallesUsuario.foto);
       formData.append("ActivoUsuario", usuarioActivo ? "Si" : "No");

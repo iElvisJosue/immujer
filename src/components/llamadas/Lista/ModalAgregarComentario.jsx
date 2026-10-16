@@ -48,7 +48,7 @@ export default function ModalAgregarComentario({
                 src="Imagenes/Escribir_Comentario.png"
                 alt="Escribir comentario"
               />
-              <h1>Agregar comentario</h1>
+              <h1>Agregar observaciones</h1>
             </span>
             {/* CONTENIDO COMENTARIO */}
             <span className="ContenedorInput">

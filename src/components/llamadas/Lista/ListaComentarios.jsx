@@ -10,23 +10,20 @@ export default function ListaComentarios({ Comentarios }) {
   return (
     <>
       <Separador />
-      <p className="DetallesLlamada__Contenido--Card Header">Comentarios</p>
+      <p className="DetallesLlamada__Contenido--Card Header">Observaciones</p>
       <div className="Comentarios">
-        {Comentarios.map((comentario) => (
-          <span
-            className="Comentarios--Comentario"
-            key={comentario.id_comentario}
-          >
+        {Comentarios.map((obs) => (
+          <span className="Comentarios--Comentario" key={obs.id_observacion}>
             <b>
-              {`${comentario.nombre} ${comentario.apellido_paterno} ${comentario.apellido_materno}`}
+              {`${obs.nombre} ${obs.apellido_paterno} ${obs.apellido_materno}`}
               <small>
                 {TiempoRelativo({
-                  Fecha: comentario.fecha_creacion,
-                  Hora: comentario.hora_creacion,
+                  Fecha: obs.fecha_creacion,
+                  Hora: obs.hora_creacion,
                 })}
               </small>
             </b>
-            <p>{comentario.comentario}</p>
+            <p>{obs.observaciones}</p>
           </span>
         ))}
       </div>

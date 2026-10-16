@@ -26,15 +26,12 @@ export default function ModalEstadoLlamada({
     detallesLlamada,
   });
 
-  const ClaseInvalida =
-    estadoSeleccionado === ESTADOS_LLAMADA.Invalida
-      ? "ModalEstadoLlamada__Contenido--Opcion Invalida Seleccionada"
-      : "ModalEstadoLlamada__Contenido--Opcion Invalida";
-
-  const ClaseAtendida =
-    estadoSeleccionado === ESTADOS_LLAMADA.Atendida
-      ? "ModalEstadoLlamada__Contenido--Opcion Atendida Seleccionada"
-      : "ModalEstadoLlamada__Contenido--Opcion Atendida";
+  const FaseSeleccionada = (fase) => {
+    if(fase === estadoSeleccionado) {
+      return "ModalEstadoLlamada__Contenido--Opcion Seleccionada";
+    }
+    return "ModalEstadoLlamada__Contenido--Opcion";
+  }
 
   return (
     <div className="ModalEstadoLlamada">
@@ -58,22 +55,40 @@ export default function ModalEstadoLlamada({
               <h1>Cambiar estado de la llamada</h1>
             </span>
             <picture
-              className={ClaseInvalida}
+              className={FaseSeleccionada(ESTADOS_LLAMADA.Prueba)}
               onClick={() =>
-                establecerEstadoSeleccionado(ESTADOS_LLAMADA.Invalida)
+                establecerEstadoSeleccionado(ESTADOS_LLAMADA.Prueba)
               }
             >
-              <img src="Imagenes/Ban.png" alt="Inválida" />
-              <b>Inválida</b>
+              <img src="Imagenes/Fase_Prueba.png" alt="Prueba" />
+              <b>Prueba</b>
             </picture>
             <picture
-              className={ClaseAtendida}
+              className={FaseSeleccionada(ESTADOS_LLAMADA.FalsaAlarma)}
               onClick={() =>
-                establecerEstadoSeleccionado(ESTADOS_LLAMADA.Atendida)
+                establecerEstadoSeleccionado(ESTADOS_LLAMADA.FalsaAlarma)
               }
             >
-              <img src="Imagenes/Alerta_Exito.png" alt="Atendida" />
-              <b>Atendida</b>
+              <img src="Imagenes/Fase_FalsaAlarma.png" alt="Falsa alarma" />
+              <b>Falsa alarma</b>
+            </picture>
+            <picture
+              className={FaseSeleccionada(ESTADOS_LLAMADA.Derivada)}
+              onClick={() =>
+                establecerEstadoSeleccionado(ESTADOS_LLAMADA.Derivada)
+              }
+            >
+              <img src="Imagenes/Fase_Derivada.png" alt="Derivada a" />
+              <b>Derivada a</b>
+            </picture>
+            <picture
+              className={FaseSeleccionada(ESTADOS_LLAMADA.Cerrada)}
+              onClick={() =>
+                establecerEstadoSeleccionado(ESTADOS_LLAMADA.Cerrada)
+              }
+            >
+              <img src="Imagenes/Alerta_Exito.png" alt="Cerrada" />
+              <b>Cerrada</b>
             </picture>
             {estadoSeleccionado && (
               <button

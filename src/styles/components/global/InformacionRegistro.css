@@ -69,20 +69,28 @@
   font-size: 10px;
 }
 .InformacionRegistro__Header--ImagenTitulo--Estado.Pendiente {
-  background-color: var(--ColorFondoAzul);
-  color: var(--ColorAzul);
+  color: var(--ColorNaranja);
+  background-color: var(--ColorFondoNaranja);
 }
-.InformacionRegistro__Header--ImagenTitulo--Estado.Inválida {
-  background-color: var(--ColorFondoRojo);
+.InformacionRegistro__Header--ImagenTitulo--Estado.Prueba {
+  color: var(--ColorGrisOscuro);
+  background-color: var(--ColorFondoGrisOscuro);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Falsaalarma {
   color: var(--ColorRojoOscuro);
+  background-color: var(--ColorFondoRojo);
 }
-.InformacionRegistro__Header--ImagenTitulo--Estado.Atendida {
-  background-color: var(--ColorFondoVerde);
+.InformacionRegistro__Header--ImagenTitulo--Estado.Derivadaa {
+  color: var(--ColorAzul);
+  background-color: var(--ColorFondoAzul);
+}
+.InformacionRegistro__Header--ImagenTitulo--Estado.Cerrada {
   color: var(--ColorVerde);
+  background-color: var(--ColorFondoVerde);
 }
 .InformacionRegistro__Header--ImagenTitulo--Estado.Recomendado {
-  background-color: var(--ColorFondoNaranja);
   color: var(--ColorNaranja);
+  background-color: var(--ColorFondoNaranja);
 }
 .InformacionRegistro__Header--ImagenTitulo--Estado.Rol {
   background-color: var(--ColorBg);

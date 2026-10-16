@@ -8,7 +8,7 @@
   font-size: 30px;
 }
 .TituloDeAlerta.Azul {
-  color: var(--ColorPrincipal);
+  color: var(--ColorAzul);
 }
 .TituloDeAlerta.Verde {
   color: var(--ColorVerde);
@@ -18,6 +18,9 @@
 }
 .TituloDeAlerta.Rojo {
   color: var(--ColorRojoOscuro);
+}
+.TituloDeAlerta.Gris {
+  color: var(--ColorGrisOscuro);
 }
 .ContenidoDeAlerta {
   color: var(--ColorGrisOscuro);
@@ -49,7 +52,7 @@
   color: var(--ColorBlanco);
 }
 .BotonDeConfirmacion.Azul {
-  background-color: var(--ColorPrincipal);
+  background-color: var(--ColorAzul);
 }
 .BotonDeConfirmacion.Verde {
   background-color: var(--ColorVerde);
@@ -59,4 +62,7 @@
 }
 .BotonDeConfirmacion.Rojo {
   background-color: var(--ColorRojoOscuro);
+}
+.BotonDeConfirmacion.Gris {
+  background-color: var(--ColorGrisOscuro);
 }

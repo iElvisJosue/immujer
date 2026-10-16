@@ -12,6 +12,16 @@ export default function InformacionRegistro({
   Color = "",
   FuncionParaRealizar = () => {},
 }) {
+
+  
+  const SanitizarBgDestacado = (bg) => {
+    if (bg) {
+      return bg.replace(/\s+/g, "");
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div
       className={`InformacionRegistro ${Color}`}
@@ -29,7 +39,9 @@ export default function InformacionRegistro({
             </p>
             {InfDestacada && (
               <small
-                className={`InformacionRegistro__Header--ImagenTitulo--Estado ${InfDestacada.Bg}`}
+                className={`InformacionRegistro__Header--ImagenTitulo--Estado ${SanitizarBgDestacado(
+                  InfDestacada.Bg,
+                )}`}
               >
                 {InfDestacada.Texto}
               </small>

@@ -99,11 +99,19 @@ export default function useDetallesLlamada({
     const { fase } = infLlamada;
     const NombreQuienModifico = `${infLlamada.nombre_modificador} ${infLlamada.apellido_paterno_modificador} ${infLlamada.apellido_materno_modificador}`;
     const ColoresAlerta = {
-      [ESTADOS_LLAMADA.Invalida]: {
-        Imagen: "Imagenes/Ban.png",
+      [ESTADOS_LLAMADA.Prueba]: {
+        Imagen: "Imagenes/Fase_Prueba.png",
+        ColorAlerta: "Gris",
+      },
+      [ESTADOS_LLAMADA.FalsaAlarma]: {
+        Imagen: "Imagenes/Fase_FalsaAlarma.png",
         ColorAlerta: "Rojo",
       },
-      [ESTADOS_LLAMADA.Atendida]: {
+      [ESTADOS_LLAMADA.Derivada]: {
+        Imagen: "Imagenes/Fase_Derivada.png",
+        ColorAlerta: "Azul",
+      },
+      [ESTADOS_LLAMADA.Cerrada]: {
         Imagen: "Imagenes/Alerta_Exito.png",
         ColorAlerta: "Verde",
       },

@@ -360,34 +360,6 @@ export default function RegistrarUsuario() {
         </div>
         {CampoRequerido("Colonia")}
       </span>
-      {/* CONYUGE */}
-      <span className="ContenedorInput">
-        <div className="ContenedorInput__MaterialDesign">
-          <span className="ContenedorInput__MaterialDesign--Icono">
-            <LISTA_SVGS SVG="PAREJA" />
-          </span>
-          <input
-            id="NombreConyuge"
-            name="NombreConyuge"
-            type="text"
-            placeholder=" "
-            className="ContenedorInput__MaterialDesign--InputText SinBorde"
-            {...register("NombreConyuge", {
-              maxLength: {
-                value: 255,
-                message: MENSAJES_DE_VALIDACION.MAX255,
-              },
-            })}
-          />
-          <label
-            htmlFor="NombreConyuge"
-            className="ContenedorInput__MaterialDesign--Label"
-          >
-            Conyuge
-          </label>
-        </div>
-        {CampoRequerido("NombreConyuge")}
-      </span>
       {/* CONTACTO EMERGENCIA */}
       <span className="ContenedorInput">
         <div className="ContenedorInput__MaterialDesign">

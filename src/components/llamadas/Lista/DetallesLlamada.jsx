@@ -56,6 +56,7 @@ export default function DetallesLlamada({
     id_one_signal,
     id_llamada,
     nombre_creador,
+    folio,
     apellido_paterno_creador,
     apellido_materno_creador,
     fecha_creacion,
@@ -120,7 +121,7 @@ export default function DetallesLlamada({
             {/* BOTONES PARA AGREGAR UN COMENTARIO */}
             <button
               className="DetallesLlamada__Contenido--Header--Acciones--Boton AgregarComentario"
-              title="Añadir comentario"
+              title="Añadir observación"
               onClick={() => {
                 establecerVerModalAgregarComentario(true);
               }}
@@ -172,10 +173,10 @@ export default function DetallesLlamada({
             className="DetallesLlamada__Contenido--Card--Icono"
           />
           <p className="DetallesLlamada__Contenido--Card--Titulo">
-            Llamada número
+            Folio
           </p>
           <p className="DetallesLlamada__Contenido--Card--Texto">
-            {id_llamada}
+            {folio}
           </p>
         </span>
         {/* NOMBRE */}

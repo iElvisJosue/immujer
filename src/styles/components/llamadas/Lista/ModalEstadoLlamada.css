@@ -23,7 +23,7 @@
 
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 @keyframes ModalEstadoLlamada {
   0% {
@@ -91,23 +91,16 @@
   gap: 5px;
 }
 .ModalEstadoLlamada__Contenido--Opcion img {
-  width: clamp(40px, 10vw, 50px);
-  height: clamp(40px, 10vw, 50px);
+  width: clamp(25px, 10vw, 30px);
+  height: clamp(25px, 10vw, 30px);
 }
 .ModalEstadoLlamada__Contenido--Opcion b {
-  font-size: clamp(12px, 4vw, 14px);
+  color: var(--ColorGrisOscuro);
+  font-size: clamp(10px, 4vw, 12px);
+  text-align: center;
 }
-.ModalEstadoLlamada__Contenido--Opcion.Invalida {
-  color: var(--ColorRojoOscuro);
-}
-.ModalEstadoLlamada__Contenido--Opcion.Atendida {
-  color: var(--ColorVerde);
-}
-.ModalEstadoLlamada__Contenido--Opcion.Invalida.Seleccionada {
-  border-color: var(--ColorRojoOscuro);
-}
-.ModalEstadoLlamada__Contenido--Opcion.Atendida.Seleccionada {
-  border-color: var(--ColorVerde);
+.ModalEstadoLlamada__Contenido--Opcion.Seleccionada {
+  border-color: var(--ColorPrincipal);
 }
 .ModalEstadoLlamada__Contenido--TextoInformativo {
   grid-column: 1 / -1;
@@ -144,5 +137,10 @@
     width: 30px;
     height: 30px;
     border-radius: 0 13px 0 13px;
+  }
+}
+@media (width <= 450px) {
+  .ModalEstadoLlamada__Contenido {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
